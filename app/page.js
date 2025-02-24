@@ -1,12 +1,16 @@
+import SparkUp from "../components/template/home/SparkUp";
+import Services from "../components/template/home/Services";
+import Portfolio from "../components/template/home/Portfolio";
+
 const Home = ()=>{
 
   return(
 
       <>
 
-        <h1 className="bg-red-400 h-[100px]">
-          omid
-        </h1>
+        <SparkUp/>
+        {/*<Services/>*/}
+        <Portfolio/>
 
       </>
 
