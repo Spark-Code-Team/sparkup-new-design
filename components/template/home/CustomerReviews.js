@@ -9,42 +9,37 @@ import 'swiper/css/pagination';
 
 // import required modules
 import { Pagination } from 'swiper/modules';
-
 import TitlePages from "../../module/TitlePages";
 import Image from "next/image";
+import CardCustomerReview from "../../module/CardCustomerReview";
 
-const Portfolio = ()=>{
+const CustomerReviews = ()=>{
 
     return(
 
         <>
 
-            <TitlePages title="نمونه کارهای اخیر"/>
+            <TitlePages title="نظرات مشتریان"/>
 
-            <div className="w-[90%] m-auto mt-10">
+            <div className="w-full bg-red-500 mt-8">
 
                 <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+
                     <SwiperSlide>
 
-                        <div className="w-full bg-blue-400">
-                            <Image src="/images/frame1.png" alt="" width={1200} height={400}/>
-                        </div>
+                        <CardCustomerReview/>
 
                     </SwiperSlide>
 
                     <SwiperSlide>
 
-                        <div className="w-full bg-blue-400">
-                            <Image src="/images/img2.webp" alt="" width={1200} height={400}/>
-                        </div>
+                        <CardCustomerReview/>
 
                     </SwiperSlide>
 
                     <SwiperSlide>
 
-                        <div className="w-full bg-blue-400">
-                            <Image src="/images/img1.webp" alt="" width={1200} height={400}/>
-                        </div>
+                        <CardCustomerReview/>
 
                     </SwiperSlide>
 
@@ -59,4 +54,4 @@ const Portfolio = ()=>{
 }
 
 
-export default Portfolio;
+export default CustomerReviews;

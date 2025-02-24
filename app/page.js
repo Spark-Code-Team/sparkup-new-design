@@ -1,6 +1,7 @@
 import SparkUp from "../components/template/home/SparkUp";
 import Services from "../components/template/home/Services";
 import Portfolio from "../components/template/home/Portfolio";
+import CustomerReviews from "../components/template/home/CustomerReviews";
 
 const Home = ()=>{
 
@@ -8,9 +9,10 @@ const Home = ()=>{
 
       <>
 
-        <SparkUp/>
-        {/*<Services/>*/}
-        <Portfolio/>
+          <SparkUp/>
+          {/*<Services/>*/}
+          <Portfolio/>
+          <CustomerReviews/>
 
       </>
 

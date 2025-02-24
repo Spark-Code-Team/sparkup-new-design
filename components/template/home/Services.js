@@ -47,7 +47,7 @@ export default function StackedCards() {
 
         <>
 
-            <TitlePages router="خدمات"/>
+            <TitlePages title="خدمات"/>
 
             <div ref={containerRef} className="relative w-full flex justify-center">
 

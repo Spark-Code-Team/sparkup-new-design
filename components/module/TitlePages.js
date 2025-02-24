@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const TitlePages = ({router})=>{
+const TitlePages = ({title})=>{
 
     return(
 
@@ -9,7 +9,7 @@ const TitlePages = ({router})=>{
             <div className="w-full bg-red-300 text-center flex justify-center gap-x-5 text-[20px] flex-wrap items-center mt-14 font-bold">
 
                 <Image src="/images/bg1.png" alt="" width={42} height={12}/>
-                {router}
+                {title}
                 <Image src="/images/bg2.png" alt="" width={42} height={12}/>
 
             </div>
