@@ -11,7 +11,7 @@ const Navbar = ()=>{
 
         <>
 
-            <div className="w-full h-[80px] bg-yellow-400 flex justify-between items-center pr-7 pl-7 border-b-[1.5px] border-b-[#EDEDED]">
+            <div className="w-full h-[80px] flex justify-between items-center pr-7 pl-7 border-b-[1.5px] border-b-[#EDEDED]">
 
                 <button onClick={()=>setOpenMenu(true)}>
                     <Image src="/images/hamber.png" alt="" width={36} height={24}/>

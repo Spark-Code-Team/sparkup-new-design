@@ -26,7 +26,7 @@ const Portfolio = ()=>{
                 <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
                     <SwiperSlide>
 
-                        <div className="w-full bg-blue-400">
+                        <div className="w-full">
                             <Image src="/images/frame1.png" alt="" width={1200} height={400}/>
                         </div>
 
@@ -34,7 +34,7 @@ const Portfolio = ()=>{
 
                     <SwiperSlide>
 
-                        <div className="w-full bg-blue-400">
+                        <div className="w-full">
                             <Image src="/images/img2.webp" alt="" width={1200} height={400}/>
                         </div>
 
@@ -42,7 +42,7 @@ const Portfolio = ()=>{
 
                     <SwiperSlide>
 
-                        <div className="w-full bg-blue-400">
+                        <div className="w-full">
                             <Image src="/images/img1.webp" alt="" width={1200} height={400}/>
                         </div>
 

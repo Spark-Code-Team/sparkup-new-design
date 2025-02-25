@@ -21,7 +21,7 @@ const CustomerReviews = ()=>{
 
             <TitlePages title="نظرات مشتریان"/>
 
-            <div className="w-full bg-red-500 mt-8">
+            <div className="w-full mt-8">
 
                 <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
 

@@ -6,7 +6,7 @@ const TitlePages = ({title})=>{
 
         <>
 
-            <div className="w-full bg-red-300 text-center flex justify-center gap-x-5 text-[20px] flex-wrap items-center mt-14 font-bold">
+            <div className="w-full text-center flex justify-center gap-x-5 text-[20px] flex-wrap items-center mt-14 font-bold">
 
                 <Image src="/images/bg1.png" alt="" width={42} height={12}/>
                 {title}
