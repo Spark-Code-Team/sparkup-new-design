@@ -1,82 +1,89 @@
-"use client"
+"use client";
 import Image from "next/image";
-import {useState} from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
-const Navbar = ()=>{
+const Navbar = () => {
 
-    const [openMenu , setOpenMenu] = useState(false);
+    const [openMenu, setOpenMenu] = useState(false);
 
-    return(
+    useEffect(() => {
+        if (openMenu) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+    }, [openMenu]);
 
+    return (
         <>
-
-            <div className="w-full h-[80px] flex justify-between items-center pr-7 pl-7 border-b-[1.5px] border-b-[#EDEDED]">
-
-                <button onClick={()=>setOpenMenu(true)}>
-                    <Image src="/images/hamber.png" alt="" width={36} height={24}/>
+            {/* نوبار اصلی */}
+            <div className="w-full h-[80px] flex justify-between items-center px-7 border-b border-gray-200">
+                <button onClick={() => setOpenMenu(true)}>
+                    <Image src="/images/hamber.png" alt="Menu" width={36} height={24} />
                 </button>
 
                 <Link href="#">
-                    <Image src="/images/spark.png" alt="" width={99} height={30}/>
+                    <Image src="/images/spark.png" alt="Logo" width={99} height={30} />
                 </Link>
-
             </div>
 
+            {/* سایدبار */}
+            {openMenu && (
+                <div className="fixed inset-0 z-50 flex">
+                    {/* پس‌زمینه تیره برای مودال */}
+                    <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300" onClick={() => setOpenMenu(false)}> </div>
 
-            {
-                openMenu &&(
-
-                    <div className="w-[90%] min-h-[700px] pb-10 bg-white shadow-2xl absolute right-0 top-0">
-
-                        <div className="w-full mt-10 flex justify-end pl-5">
-                            <button onClick={()=>setOpenMenu(false)}>
-                                <Image src="/images/clear.png" alt="" width={24} height={24}/>
+                    {/* منو */}
+                    <div className="w-[80%] sm:w-[60%] md:w-[40%] h-screen bg-white shadow-2xl absolute right-0 top-0 p-6 transition-transform duration-300 translate-x-0">
+                        {/* دکمه بستن */}
+                        <div className="w-full flex justify-end">
+                            <button onClick={() => setOpenMenu(false)}>
+                                <Image src="/images/clear.png" alt="Close" width={24} height={24} />
                             </button>
                         </div>
 
-                        <div className="w-[90%] m-auto mt-6 p-5 border-b-[1.5px] rounded-b-xl">
-                            <Link href="#">صفحه اصلی</Link>
-                        </div>
+                        {/* لینک‌های منو */}
+                        <div className="flex flex-col items-center mt-8 space-y-6">
 
-                        <div className="w-[90%] m-auto mt-6 p-5 border-b-[1.5px] rounded-b-xl">
-                            <Link href="#">خدمات</Link>
-                        </div>
+                            <Link href="/" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                                صفحه اصلی
+                            </Link>
 
-                        <div className="w-[90%] m-auto mt-6 p-5 border-b-[1.5px] rounded-b-xl">
-                            <Link href="#">نمونه کارها</Link>
-                        </div>
+                            <Link href="/services" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                                خدمات
+                            </Link>
 
-                        <div className="w-[90%] m-auto mt-6 p-5 border-b-[1.5px] rounded-b-xl">
-                            <Link href="#">مقالات و منابع</Link>
-                        </div>
+                            <Link href="/portfolio" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                                نمونه کارها
+                            </Link>
 
-                        <div className="w-[90%] m-auto mt-6 p-5 border-b-[1.5px] rounded-b-xl">
-                            <Link href="#">درباره ما</Link>
-                        </div>
+                            <Link href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                                مقالات و منابع
+                            </Link>
 
-                        <div className="w-[90%] m-auto mt-6 p-5 border-b-[1.5px] rounded-b-xl">
-                            <Link href="#">تماس با ما</Link>
-                        </div>
+                            <Link href="/about" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                                درباره ما
+                            </Link>
 
-                        <div className="w-[90%] m-auto mt-6 p-5 border-b-[1.5px] rounded-b-xl">
-                            <Link href="#">پرسش های متداول</Link>
-                        </div>
+                            <Link href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                                تماس با ما
+                            </Link>
 
-                        <div className="w-[90%] bg-[#C1121F] m-auto mt-10 p-3 rounded-2xl text-center font-bold">
-                            <button>ورود/ ثبت نام</button>
-                        </div>
+                            <Link href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                                پرسش های متداول
+                            </Link>
 
+                            {/* دکمه ورود */}
+                            <button className="w-full bg-[#C1121F] text-white py-3 rounded-lg font-bold mt-6">
+                                ورود / ثبت نام
+                            </button>
+                        </div>
                     </div>
-
-                )
-            }
-
+                </div>
+            )}
         </>
-
-    )
-
-}
-
+    );
+};
 
 export default Navbar;
