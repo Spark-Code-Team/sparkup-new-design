@@ -78,7 +78,9 @@ const Navbar = () => {
                             <button className="w-full bg-[#C1121F] text-white py-3 rounded-lg font-bold mt-6">
                                 ورود / ثبت نام
                             </button>
+
                         </div>
+
                     </div>
                 </div>
             )}

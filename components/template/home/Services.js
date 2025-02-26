@@ -49,7 +49,7 @@ export default function StackedCards() {
 
             <TitlePages title="خدمات"/>
 
-            <div ref={containerRef} className="relative w-full flex justify-center">
+            <div ref={containerRef} className="relative w-full flex justify-center mb-[800px]">
 
                 {cards.map((card, index) => (
                     <div

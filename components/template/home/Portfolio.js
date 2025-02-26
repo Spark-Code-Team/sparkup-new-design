@@ -19,7 +19,13 @@ const Portfolio = ()=>{
 
         <>
 
-            <TitlePages title="نمونه کارهای اخیر"/>
+            <div className="w-full text-center flex justify-center gap-x-5 text-[20px] flex-wrap items-center mt-96 font-bold">
+
+                <Image src="/images/bg1.png" alt="" width={42} height={12}/>
+                نمونه کارهای اخیر
+                <Image src="/images/bg2.png" alt="" width={42} height={12}/>
+
+            </div>
 
             <div className="w-[90%] m-auto mt-10">
 

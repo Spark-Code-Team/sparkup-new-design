@@ -11,7 +11,7 @@ const Home = ()=>{
       <>
 
           <SparkUp/>
-          {/*<Services/>*/}
+          <Services/>
           <Portfolio/>
           <CustomerReviews/>
           <Team/>
