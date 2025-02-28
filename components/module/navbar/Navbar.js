@@ -46,33 +46,33 @@ const Navbar = () => {
                         {/* لینک‌های منو */}
                         <div className="flex flex-col items-center mt-8 space-y-6">
 
-                            <Link href="/" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <a href="/" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 صفحه اصلی
-                            </Link>
+                            </a>
 
-                            <Link href="/services" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <a href="/services" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 خدمات
-                            </Link>
+                            </a>
 
-                            <Link href="/portfolio" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <a href="/portfolio" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 نمونه کارها
-                            </Link>
+                            </a>
 
-                            <Link href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <a href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 مقالات و منابع
-                            </Link>
+                            </a>
 
-                            <Link href="/about" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <a href="/about" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 درباره ما
-                            </Link>
+                            </a>
 
-                            <Link href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <a href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 تماس با ما
-                            </Link>
+                            </a>
 
-                            <Link href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <a href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 پرسش های متداول
-                            </Link>
+                            </a>
 
                             {/* دکمه ورود */}
                             <button className="w-full bg-[#C1121F] text-white py-3 rounded-lg font-bold mt-6">
