@@ -14,7 +14,7 @@ const SparkUp = ()=>{
                     <div className="w-full m-auto text-xl font-bold">اسپارک‌آپ، تولد یک جرقه!</div>
 
                     <div className="w-full m-auto flex justify-center mt-6">
-                        <Image src="/images/spark-up.png" alt="" width={392} height={310}/>
+                        <Image src="/images/banner-03.jpg" alt="" width={392} height={310}/>
                     </div>
 
                     <div className="w-full m-auto text-base mt-6">ما اسپارک‌آپ هستیم، یه جای پر از آدمای خلاق و باحال که ایده‌هاشون مثل فشفشه می‌ترکه! اینجا، تو دل شهر شلوغ، یه دفتر کوچیک داریم که توش کلی اتفاقای هیجان‌انگیز می‌افته. ما یه خانواده‌ایم که با هم می‌سوزیم و می‌درخشیم، خلاقیتمون مثل آتیش شعله‌ور می‌شه و کارای باحال انجام می‌دیم.</div>
