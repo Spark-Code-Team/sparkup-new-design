@@ -12,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 const servicesData = [
     {
         id: 1,
+        image:"/images/Artboard1.png",
         title: "اسپارک‌تک  -  یه شبکه خفن، سریع و امن!",
         services: [
             "طراحی وبسایت:  با طراحی UI/UX حرفه‌ای، یه وبسایت کاربرپسند و جذاب براتون می‌سازیم که هم خوشگل باشه هم راحت و سریع!",
@@ -23,6 +24,7 @@ const servicesData = [
     },
     {
         id: 2,
+        image:"/images/Artboard2.png",
         title: "اسپارک‌‌استودیو -  خلاقیت در هر پیکسل!",
         services: [
             "تولید محتوای ویدیویی:  یه ویدیوی باحال و خلاقانه می‌تونه مثل یه جرقه کسب‌وکار شما رو روشن کنه! ما با ساخت ویدیوهای دو بعدی، سه بعدی و موشن گرافیک، باعث می‌شیم همه محو تماشای ویدیوهای شما بشن! ",
@@ -34,6 +36,7 @@ const servicesData = [
     },
     {
         id: 3,
+        image:"/images/Artboard3.png",
         title: "اسپارک ادز  -  مشتری‌ها رو هدف می‌گیریم!",
         services: [
             "تبلیغات دیجیتال:  ما با تبلیغات هدفمند تو گوگل و شبکه‌های اجتماعی، مشتری‌های شمارو پیدا می‌کنیم و فروش شما رو چند برابر می‌کنیم! ",
@@ -46,6 +49,7 @@ const servicesData = [
 
     {
         id: 4,
+        image:"/images/Artboard4.png",
         title: "اسپارک پلن  -  یه برنامه‌ی خفن برای موفقیت!",
         services: [
             "مشاوره بازاریابی:  ما با مشاوره‌های تخصصی، کمک‌تون می‌کنیم تا بهترین تصمیم‌ها رو برای کسب‌وکارتون بگیرین. " ,
@@ -98,7 +102,8 @@ export default function StackedCards() {
                             zIndex: index === 0 ? 5 : -index,
                         }}
                     >
-                        <p className="text-[18px] font-bold mt-12">{card.title}</p>
+                        <Image src={card.image} alt="" width={360} height={200}/>
+                        <p className="text-[18px] font-bold">{card.title}</p>
                         <ul className="mt-4 text-sm text-gray-600 list-disc list-inside leading-10 text-black">
                             {card.services.map((service, idx) => (
                                 <li key={idx}>{service}</li>
