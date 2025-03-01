@@ -19,7 +19,7 @@ const Portfolio = ()=>{
 
         <>
 
-            <div className="w-full text-center flex justify-center gap-x-5 text-[20px] flex-wrap items-center mt-96 font-bold">
+            <div className="w-full text-center flex justify-center gap-x-5 text-[20px] flex-wrap items-center mt-[800px] font-bold">
 
                 <Image src="/images/bg1.png" alt="" width={42} height={12}/>
                 نمونه کارهای اخیر
@@ -41,7 +41,7 @@ const Portfolio = ()=>{
                     <SwiperSlide>
 
                         <div className="w-full">
-                            <Image src="/images/img2.webp" alt="" width={1200} height={400}/>
+                            <Image src="/images/frame1.png" alt="" width={1200} height={400}/>
                         </div>
 
                     </SwiperSlide>
@@ -49,7 +49,7 @@ const Portfolio = ()=>{
                     <SwiperSlide>
 
                         <div className="w-full">
-                            <Image src="/images/img1.webp" alt="" width={1200} height={400}/>
+                            <Image src="/images/frame1.png" alt="" width={1200} height={400}/>
                         </div>
 
                     </SwiperSlide>
