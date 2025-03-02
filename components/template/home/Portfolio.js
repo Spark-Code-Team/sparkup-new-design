@@ -19,7 +19,7 @@ const Portfolio = ()=>{
 
         <>
 
-            <div className="w-full text-center flex justify-center gap-x-5 text-[20px] flex-wrap items-center mt-[800px] font-bold">
+            <div className="w-full text-center flex justify-center gap-x-5 text-[20px] flex-wrap items-center mt-[700px] font-bold">
 
                 <Image src="/images/bg1.png" alt="" width={42} height={12}/>
                 نمونه کارهای اخیر
