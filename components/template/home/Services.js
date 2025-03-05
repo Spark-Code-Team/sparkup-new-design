@@ -1,11 +1,21 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef , useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ArrowRight from "../../../public/icons/ArrowRight";
 import Image from "next/image";
 import TitlePages from "../../module/TitlePages";
+// import React, { useRef, useState } from 'react';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+// import required modules
+import { Pagination } from 'swiper/modules';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,7 +103,7 @@ export default function StackedCards() {
         <>
             <TitlePages title="خدمات"/>
 
-            <div ref={containerRef} className="relative w-full flex justify-center mb-[500px]">
+            <div ref={containerRef} className="relative w-full lg:hidden flex justify-center mb-[500px]">
                 {servicesData.map((card, index) => (
                     <div
                         key={card.id}
@@ -118,6 +128,56 @@ export default function StackedCards() {
                     </div>
                 ))}
             </div>
+
+
+
+            <div className="lg:block hidden w-full mt-16 pr-14 pl-14">
+
+                <div className="w-full m-auto text-[18px] font-bold">خدمات</div>
+
+                <Swiper
+                    slidesPerView={3}
+                    spaceBetween={30}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Pagination]}
+                    className="mySwiper"
+                >
+
+                    {
+                        servicesData.map((card, index) => (
+                            <SwiperSlide key={index} className="flex items-stretch">
+                                <div className="w-full h-full m-auto mt-10 flex gap-x-8 items-stretch">
+                                    <div className="lg:w-[391px] min-h-[560px] h-auto border-[1.5px] border-[#FF8500] rounded-tr-[190px] rounded-bl-[190px] flex flex-col flex-grow">
+                                        <div className="w-full m-auto mt-12 flex justify-center items-center">
+                                            <Image src={card.image} alt="" width={360} height={200} />
+                                        </div>
+
+                                        <div className="w-full m-auto pr-5 flex-grow">
+                                            <ul className="text-sm text-gray-600 list-disc list-inside leading-10 text-black">
+                                                {card.services.map((service, idx) => (
+                                                    <li key={idx}>{service}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+
+                                        <div className="w-full m-auto pr-5 flex">
+                                            <button className="mt-auto mb-5 text-[#C1121F] font-bold flex items-center gap-1 text-base">
+                                                <ArrowRight /> مشاهده بیشتر
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        ))
+                    }
+
+
+                </Swiper>
+
+            </div>
+
         </>
     );
 }
