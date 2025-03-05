@@ -10,10 +10,13 @@ import 'swiper/css/pagination';
 // import required modules
 import { Pagination } from 'swiper/modules';
 import TitlePages from "../../module/TitlePages";
+import Link from "next/link";
 import Image from "next/image";
 import CardCustomerReview from "../../module/CardCustomerReview";
 
 const CustomerReviews = ()=>{
+
+    const items = [1 , 2 , 3 , 4];
 
     return(
 
@@ -21,29 +24,48 @@ const CustomerReviews = ()=>{
 
             <TitlePages title="نظرات مشتریان"/>
 
-            <div className="w-full mt-8">
+            <div className="w-full lg:pr-14 lg:pl-14 pr-0 pl-0 lg:mt-16 mt-10">
 
-                <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
+                <div className="w-full m-auto text-[18px] font-bold hidden lg:flex justify-between">
+                    <p>نظرات مشتریان</p>
+                    <Link href="/" className="text-[#C1121F]"> مشاهده بیشتر</Link>
+                </div>
 
-                    <SwiperSlide>
+                <div className="w-full m-auto mt-8">
 
-                        <CardCustomerReview/>
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={18}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        breakpoints={{
+                            650: {
+                                slidesPerView: 1, // در حالت موبایل، 1 کارت نشان داده می‌شود
+                            },
+                            1024: {
+                                slidesPerView: 3, // در حالت دسکتاپ، 3 کارت نشان داده می‌شود
+                            },
+                        }}
+                        modules={[Pagination]}
+                        className="mySwiper"
+                    >
 
-                    </SwiperSlide>
+                        {
+                            items.map((item , index)=>(
 
-                    <SwiperSlide>
+                                <SwiperSlide key={index}>
 
-                        <CardCustomerReview/>
+                                    <CardCustomerReview/>
 
-                    </SwiperSlide>
+                                </SwiperSlide>
 
-                    <SwiperSlide>
+                            ))
+                        }
 
-                        <CardCustomerReview/>
+                    </Swiper>
 
-                    </SwiperSlide>
-
-                </Swiper>
+                </div>
 
             </div>
 

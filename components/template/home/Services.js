@@ -101,6 +101,8 @@ export default function StackedCards() {
 
     return (
         <>
+
+            {/*  mobile  */}
             <TitlePages title="خدمات"/>
 
             <div ref={containerRef} className="relative w-full lg:hidden flex justify-center mb-[500px]">
@@ -131,6 +133,7 @@ export default function StackedCards() {
 
 
 
+            {/*  desktop  */}
             <div className="lg:block hidden w-full mt-16 pr-14 pl-14">
 
                 <div className="w-full m-auto text-[18px] font-bold">خدمات</div>

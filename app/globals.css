@@ -10,15 +10,29 @@
 }
 
 
-.swiper-pagination{
-  position: relative !important;
-  top: 5px !important;
+/* تنظیم موقعیت pagination برای موبایل */
+@media (max-width: 1023px) {
+  .swiper-pagination {
+    position: relative !important;
+    top: 5px !important; /* مقدار کمی بالاتر میاد */
+  }
 }
 
+/* تنظیم pagination برای دسکتاپ */
+@media (min-width: 1024px) {
+  .swiper-pagination {
+    position: relative !important;
+    bottom: -2px !important; /* پایین‌تر میاد تا زیر کارت‌ها قرار بگیره */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
 
-.swiper-pagination-bullet-active{
+/* تغییر رنگ دکمه‌های فعال */
+.swiper-pagination-bullet-active {
   background-color: #C1121F !important;
 }
+
 
 
 

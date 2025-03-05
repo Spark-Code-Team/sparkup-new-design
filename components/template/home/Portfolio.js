@@ -9,111 +9,71 @@ import 'swiper/css/pagination';
 
 // import required modules
 import { Pagination } from 'swiper/modules';
-
 import TitlePages from "../../module/TitlePages";
 import Image from "next/image";
 import Link from "next/link";
 
+
 const Portfolio = ()=>{
+
+    const items = [
+        {id:1 , image:"/images/frame1.png" , title:"طراحی سایت فروشگاهی طلا و جواهرات"},
+        {id:2 , image:"/images/sample-proje.png" , title:"طراحی سایت فروشگاهی طلا و جواهرات"},
+        {id:3 , image:"/images/frame2.png" , title:"طراحی سایت فروشگاهی طلا و جواهرات"},
+        {id:4 , image:"/images/frame1.png" , title:"طراحی سایت فروشگاهی طلا و جواهرات"},
+    ];
 
     return(
 
         <>
 
-            {/*   mobile portfolio  */}
+            <TitlePages title="نمونه کارها"/>
 
-            <TitlePages title="نمونه کارهای اخیر"/>
+            <div className="w-full lg:pr-14 lg:pl-14 pr-0 pl-0 lg:mt-16 mt-10">
 
-            <div className="lg:hidden w-[90%] m-auto mt-10">
-
-                <Swiper pagination={true} modules={[Pagination]} className="mySwiper">
-                    <SwiperSlide>
-
-                        <div className="w-full">
-                            <Image src="/images/frame1.png" alt="" width={1200} height={400}/>
-                        </div>
-
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-
-                        <div className="w-full">
-                            <Image src="/images/frame1.png" alt="" width={1200} height={400}/>
-                        </div>
-
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-
-                        <div className="w-full">
-                            <Image src="/images/frame1.png" alt="" width={1200} height={400}/>
-                        </div>
-
-                    </SwiperSlide>
-
-                </Swiper>
-
-            </div>
-
-
-
-
-            {/*   desktop portfolio  */}
-
-
-            <div className="lg:block hidden w-full m-auto mt-16 pr-14 pl-14">
-
-                <div className="w-full m-auto flex justify-between text-[18px] font-bold">
-                    <p>نمونه کارهای اخیر</p>
-                    <Link href="#" className="text-[#C1121F]">مشاهده همه</Link>
+                <div className="w-full m-auto text-[18px] font-bold hidden lg:flex justify-between">
+                    <p>خدمات</p>
+                    <Link href="/" className="text-[#C1121F]"> مشاهده بیشتر</Link>
                 </div>
 
-                <Swiper
-                    slidesPerView={3}
-                    spaceBetween={40}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[Pagination]}
-                    className="mySwiper"
-                >
-                    <SwiperSlide>
+                <div className="w-full m-auto mt-8">
 
-                        <div className="w-[345px] mt-10">
-                            <Image src="/images/frame1.png" alt="" width={345} height={450}/>
-                            <div className="w-full mt-4 text-center">طراحی سایت فروشگاهی طلا و جواهرات</div>
-                        </div>
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={0}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        breakpoints={{
+                            650: {
+                                slidesPerView: 1, // در حالت موبایل، 1 کارت نشان داده می‌شود
+                            },
+                            1024: {
+                                slidesPerView: 3, // در حالت دسکتاپ، 3 کارت نشان داده می‌شود
+                            },
+                        }}
+                        modules={[Pagination]}
+                        className="mySwiper"
+                    >
 
-                    </SwiperSlide>
+                        {
+                            items.map((item , index)=>(
 
-                    <SwiperSlide>
+                                <SwiperSlide key={index}>
 
-                        <div className="w-[345px] mt-10">
-                            <Image src="/images/sample-proje.png" alt="" width={345} height={450}/>
-                            <div className="w-full mt-4 text-center">طراحی سایت فروشگاهی طلا و جواهرات</div>
-                        </div>
+                                    <div className="lg:w-[392px] h-[412px] w-[90%] m-auto flex flex-wrap justify-center items-center">
+                                        <Image src={item.image} alt="" width={335} height={412}/>
+                                        <p className="w-full text-center mb-5">{item.title}</p>
+                                    </div>
 
-                    </SwiperSlide>
+                                </SwiperSlide>
 
-                    <SwiperSlide>
+                            ))
+                        }
 
-                        <div className="w-[345px] mt-10">
-                            <Image src="/images/frame2.png" alt="" width={345} height={450}/>
-                            <div className="w-full mt-4 text-center">طراحی سایت فروشگاهی طلا و جواهرات</div>
-                        </div>
+                    </Swiper>
 
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-
-                        <div className="w-[345px] mt-10">
-                            <Image src="/images/frame1.png" alt="" width={345} height={450}/>
-                            <div className="w-full mt-4 text-center">طراحی سایت فروشگاهی طلا و جواهرات</div>
-                        </div>
-
-                    </SwiperSlide>
-
-                </Swiper>
+                </div>
 
             </div>
 
