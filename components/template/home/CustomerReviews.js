@@ -22,7 +22,9 @@ const CustomerReviews = ()=>{
 
         <>
 
-            <TitlePages title="نظرات مشتریان"/>
+            <div className="lg:hidden block">
+                <TitlePages title="نظرات مشتریان"/>
+            </div>
 
             <div className="w-full lg:pr-14 lg:pl-14 pr-0 pl-0 lg:mt-16 mt-10">
 

@@ -31,7 +31,9 @@ const Team = ()=>{
 
         <>
 
-            <TitlePages title="تیم ما"/>
+            <div className="lg:hidden block">
+                <TitlePages title="تیم ما"/>
+            </div>
 
             <div className="w-full lg:pr-14 lg:pl-14 pr-0 pl-0 lg:mt-16 mt-10">
 

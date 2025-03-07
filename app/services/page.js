@@ -1,13 +1,9 @@
 import TitlePages from "../../components/module/TitlePages";
 import OnlineAdvertising from "../../components/template/services/OnlineAdvertising";
-import WorkProcessTemplate from "../../components/template/services/WorkProcessTemplate";
-import OnlineAdvertisingProject from "../../components/template/services/OnlineAdvertisingProject";
 import OfflineAdvertising from "../../components/template/services/OfflineAdvertising";
-import OfflineAdvertisingProject from "../../components/template/services/OfflineAdvertisingProject";
-import AdvertisingSterategy from "../../components/template/services/AdvertisingSterategy";
-import Portfolio from "../../components/template/services/Portfolio";
+import SampleProje from "../../components/template/services/SampleProje";
+import AdvertisingStrategy from "../../components/template/services/AdvertisingStrategy";
 import AdvertisingAcademy from "../../components/template/services/AdvertisingAcademy";
-import Courses from "../../components/template/services/Courses";
 
 const Services = ()=>{
 
@@ -15,18 +11,15 @@ const Services = ()=>{
 
         <>
 
-            <TitlePages title="خدمات اسپارک"/>
+            <div className="lg:mt-36">
+                <TitlePages title="خدمات اسپارک"/>
+            </div>
 
             <OnlineAdvertising/>
-            <WorkProcessTemplate/>
-            <OnlineAdvertisingProject/>
+            <SampleProje/>
             <OfflineAdvertising/>
-            <WorkProcessTemplate/>
-            <OfflineAdvertisingProject/>
-            <AdvertisingSterategy/>
-            <Portfolio/>
+            <AdvertisingStrategy/>
             <AdvertisingAcademy/>
-            <Courses/>
 
 
         </>

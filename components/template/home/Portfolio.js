@@ -27,12 +27,14 @@ const Portfolio = ()=>{
 
         <>
 
-            <TitlePages title="نمونه کارها"/>
+            <div className="lg:hidden block">
+                <TitlePages title="نمونه کارها"/>
+            </div>
 
             <div className="w-full lg:pr-14 lg:pl-14 pr-0 pl-0 lg:mt-16 mt-10">
 
                 <div className="w-full m-auto text-[18px] font-bold hidden lg:flex justify-between">
-                    <p>خدمات</p>
+                    <p>نمونه کارها</p>
                     <Link href="/" className="text-[#C1121F]"> مشاهده بیشتر</Link>
                 </div>
 
