@@ -12,7 +12,9 @@ const About = ()=>{
 
         <>
 
-            <TitlePages title="درباره اسپارک آپ"/>
+            <div className="lg:mt-36">
+                <TitlePages title="درباره اسپارک آپ"/>
+            </div>
 
             <Story/>
             <GettingStarted/>

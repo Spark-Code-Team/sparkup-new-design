@@ -8,7 +8,9 @@ const Portfolio = ()=>{
 
         <>
 
-            <TitlePages title="نمونه کارها"/>
+            <div className="lg:mt-36">
+                <TitlePages title="نمونه کارها"/>
+            </div>
 
             <Gallery/>
             <Studies/>
