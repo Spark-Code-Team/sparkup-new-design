@@ -119,7 +119,7 @@ export default function StackedCards() {
                     >
                         <Image src={card.image} alt="" width={360} height={200}/>
                         <p className="text-[18px] font-bold">{card.title}</p>
-                        <ul className="mt-4 text-sm text-gray-600 list-disc list-inside leading-10 text-black">
+                        <ul className="mt-4 text-sm text-gray-600 list-disc list-inside leading-10">
                             {card.services.map((service, idx) => (
                                 <li key={idx}>{service}</li>
                             ))}
@@ -158,7 +158,7 @@ export default function StackedCards() {
                                         </div>
 
                                         <div className="w-full m-auto pr-5 flex-grow">
-                                            <ul className="text-sm text-gray-600 list-disc list-inside leading-10 text-black">
+                                            <ul className="text-sm text-gray-600 list-disc list-inside leading-10">
                                                 {card.services.map((service, idx) => (
                                                     <li key={idx}>{service}</li>
                                                 ))}
