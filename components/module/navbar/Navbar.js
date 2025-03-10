@@ -120,12 +120,12 @@ const Navbar = () => {
                                 <ArrowDown/>
                             </Link>
 
-                            <ul className="bg-red-600 absolute w-[150px] h-[200px] mt-5 group-hover:block opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out rounded-lg shadow-lg">
+                            <ul className="bg-red-600 absolute w-[150px] h-[200px] mt-5 hidden group-hover:block rounded-lg shadow-lg">
                                 <li>
-                                    <Link href="#" className="w-full bg-pink-400 mt-5 block">omid 1</Link>
+                                    <Link href="#" className="w-full mt-5 block pr-3">lorem</Link>
                                 </li>
                                 <li>
-                                    <Link href="#" className="w-full bg-pink-400 mt-5 block">omid 1</Link>
+                                    <Link href="#" className="w-full mt-5 block pr-3">lorem</Link>
                                 </li>
                             </ul>
 
