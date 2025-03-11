@@ -103,51 +103,51 @@ const Navbar = () => {
                     <ul className="flex">
 
                         <li className="p-5">
-                            <Link href="/">صفحه اصلی</Link>
+                            <a href="/">صفحه اصلی</a>
                         </li>
 
                         <li className="p-5">
-                            <Link href="/">خدمات</Link>
+                            <a href="/">خدمات</a>
                         </li>
 
                         <li className="p-5">
-                            <Link href="/">نمونه کارها</Link>
+                            <a href="/">نمونه کارها</a>
                         </li>
 
                         <li className="p-5 relative group">
-                            <Link href="/" className="flex items-center">
+                            <a href="/" className="flex items-center">
                                 مقالات و منابع
                                 <ArrowDown/>
-                            </Link>
+                            </a>
 
                             <ul className="bg-red-600 absolute w-[150px] h-[200px] mt-5 hidden group-hover:block rounded-lg shadow-lg">
                                 <li>
-                                    <Link href="#" className="w-full mt-5 block pr-3">lorem</Link>
+                                    <a href="#" className="w-full mt-5 block pr-3">lorem</a>
                                 </li>
                                 <li>
-                                    <Link href="#" className="w-full mt-5 block pr-3">lorem</Link>
+                                    <a href="#" className="w-full mt-5 block pr-3">lorem</a>
                                 </li>
                             </ul>
 
                         </li>
 
                         <li className="p-5">
-                            <Link href="/">درباره ما</Link>
+                            <a href="/">درباره ما</a>
                         </li>
 
                         <li className="p-5">
-                            <Link href="/">تماس با ما</Link>
+                            <a href="/">تماس با ما</a>
                         </li>
 
                         <li className="p-5">
-                            <Link href="/">پرسش های متداول</Link>
+                            <a href="/">پرسش های متداول</a>
                         </li>
 
                     </ul>
                 </div>
 
                 <div className="w-[119px] h-[40px] bg-red-500 flex items-center justify-center rounded-md text-white">
-                    <Link href="#">ورود/ثبت نام</Link>
+                    <a href="#">ورود/ثبت نام</a>
                 </div>
 
             </div>

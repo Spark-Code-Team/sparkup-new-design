@@ -64,7 +64,7 @@ const Studies = ()=>{
 
                                     </div>
 
-                                    <div className="lg:w-1/2 w-full lg:flex lg:justify-center lg:block hidden">
+                                    <div className="lg:w-1/2 w-full lg:flex lg:justify-center hidden">
                                         <Image src="/images/proje.png" alt="" width={500} height={500}/>
                                     </div>
 
@@ -97,7 +97,7 @@ const Studies = ()=>{
 
                                     </div>
 
-                                    <div className="lg:w-1/2 w-full lg:flex lg:justify-center lg:block hidden">
+                                    <div className="lg:w-1/2 w-full lg:flex lg:justify-center hidden">
                                         <Image src="/images/proje.png" alt="" width={500} height={500}/>
                                     </div>
 
@@ -130,7 +130,7 @@ const Studies = ()=>{
 
                                     </div>
 
-                                    <div className="lg:w-1/2 w-full lg:flex lg:justify-center lg:block hidden">
+                                    <div className="lg:w-1/2 w-full lg:flex lg:justify-center hidden">
                                         <Image src="/images/proje.png" alt="" width={500} height={500}/>
                                     </div>
 
