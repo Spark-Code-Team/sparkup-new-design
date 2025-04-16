@@ -24,7 +24,7 @@ const Navbar = () => {
                     <Image src="/images/hamber.png" alt="Menu" width={36} height={24} />
                 </button>
 
-                <Link href="#">
+                <Link href="/">
                     <Image src="/images/spark.png" alt="Logo" width={99} height={30} />
                 </Link>
             </div>
@@ -47,33 +47,33 @@ const Navbar = () => {
                         {/* لینک‌های منو */}
                         <div className="flex flex-col items-center mt-8 space-y-6">
 
-                            <a href="/" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <Link href="/" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 صفحه اصلی
-                            </a>
+                            </Link>
 
-                            <a href="/services" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <Link href="/services" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 خدمات
-                            </a>
+                            </Link>
 
-                            <a href="/portfolio" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <Link href="/portfolio" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 نمونه کارها
-                            </a>
+                            </Link>
 
-                            <a href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <Link href="/articles" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 مقالات و منابع
-                            </a>
+                            </Link>
 
-                            <a href="/about" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <Link href="/about" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 درباره ما
-                            </a>
+                            </Link>
 
-                            <a href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            {/* <Link href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 تماس با ما
-                            </a>
+                            </Link>
 
-                            <a href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <Link href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 پرسش های متداول
-                            </a>
+                            </Link> */}
 
                             {/* دکمه ورود */}
                             <button className="w-full bg-[#C1121F] text-white py-3 rounded-lg font-bold mt-6">
@@ -103,45 +103,45 @@ const Navbar = () => {
                     <ul className="flex">
 
                         <li className="p-5">
-                            <a href="/">صفحه اصلی</a>
+                            <Link href="/">صفحه اصلی</Link>
                         </li>
 
                         <li className="p-5">
-                            <a href="/">خدمات</a>
+                            <Link href="/services">خدمات</Link>
                         </li>
 
                         <li className="p-5">
-                            <a href="/">نمونه کارها</a>
+                            <Link href="/portfolio">نمونه کارها</Link>
                         </li>
 
                         <li className="p-5 relative group">
-                            <a href="/" className="flex items-center">
+                            <Link href="/articles" className="flex items-center">
                                 مقالات و منابع
-                                <ArrowDown/>
-                            </a>
+                                {/* <ArrowDown/> */}
+                            </Link>
 
-                            <ul className="bg-red-600 absolute w-[150px] h-[200px] mt-5 hidden group-hover:block rounded-lg shadow-lg">
+                            {/* <ul className="bg-red-600 absolute w-[150px] h-[200px] mt-5 hidden group-hover:block rounded-lg shadow-lg">
                                 <li>
                                     <a href="#" className="w-full mt-5 block pr-3">lorem</a>
                                 </li>
                                 <li>
                                     <a href="#" className="w-full mt-5 block pr-3">lorem</a>
                                 </li>
-                            </ul>
+                            </ul> */}
 
                         </li>
 
                         <li className="p-5">
-                            <a href="/">درباره ما</a>
+                            <Link href="/about">درباره ما</Link>
+                        </li>
+
+                        {/* <li className="p-5">
+                            <Link href="/">تماس با ما</Link>
                         </li>
 
                         <li className="p-5">
-                            <a href="/">تماس با ما</a>
-                        </li>
-
-                        <li className="p-5">
-                            <a href="/">پرسش های متداول</a>
-                        </li>
+                            <Link href="/">پرسش های متداول</Link>
+                        </li> */}
 
                     </ul>
                 </div>
