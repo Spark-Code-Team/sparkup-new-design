@@ -59,9 +59,9 @@ const Navbar = () => {
                                 نمونه کارها
                             </Link>
 
-                            <Link href="/articles" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
+                            <a href="http://blog.sparkup-agency.com" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 مقالات و منابع
-                            </Link>
+                            </a>
 
                             <Link href="/about" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
                                 درباره ما
@@ -115,10 +115,10 @@ const Navbar = () => {
                         </li>
 
                         <li className="p-5 relative group">
-                            <Link href="/articles" className="flex items-center">
+                            <a href="http://blog.sparkup-agency.com" className="flex items-center">
                                 مقالات و منابع
                                 {/* <ArrowDown/> */}
-                            </Link>
+                            </a>
 
                             {/* <ul className="bg-red-600 absolute w-[150px] h-[200px] mt-5 hidden group-hover:block rounded-lg shadow-lg">
                                 <li>
