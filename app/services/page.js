@@ -4,29 +4,29 @@ import OfflineAdvertising from "../../components/template/services/OfflineAdvert
 import SampleProje from "../../components/template/services/SampleProje";
 import AdvertisingStrategy from "../../components/template/services/AdvertisingStrategy";
 import AdvertisingAcademy from "../../components/template/services/AdvertisingAcademy";
+import ServicesIntro from "@/components/module/services/ServicesIntro";
+import ServicesReview from "@/components/module/services/ServicesReview";
 
-const Services = ()=>{
+const Services = () => {
+  return (
+    <>
+      <div className="lg:mt-36">
+        <TitlePages title="خدمات اسپارک" />
+      </div>
 
-    return(
-
-        <>
-
-            <div className="lg:mt-36">
-                <TitlePages title="خدمات اسپارک"/>
-            </div>
-
-            <OnlineAdvertising/>
-            <SampleProje/>
-            <OfflineAdvertising/>
+      <OnlineAdvertising />
+      <div className={"mt-10"}>
+        <ServicesIntro />
+      </div>
+      <div>
+        <ServicesReview />
+      </div>
+      <SampleProje />
+      {/* <OfflineAdvertising/>
             <AdvertisingStrategy/>
-            <AdvertisingAcademy/>
-
-
-        </>
-
-    )
-
-}
-
+            <AdvertisingAcademy/> */}
+    </>
+  );
+};
 
 export default Services;

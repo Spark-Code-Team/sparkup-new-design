@@ -1,45 +1,43 @@
 "use client";
-import React, { useRef, useState } from 'react';
+import React from 'react';
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import {Swiper, SwiperSlide} from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 // import required modules
-import { Pagination } from 'swiper/modules';
+import {Pagination} from 'swiper/modules';
 import TitlePages from "../../module/TitlePages";
-import Link from "next/link";
-import Image from "next/image";
 import TeamModule from "../../module/TeamModule";
 
-const Team = ()=>{
+const Team = () => {
 
-    const items =  [
-        {id:1 , image:"/images/team1.png" , name:"امیر"},
-        {id:2 , image:"/images/team2.png" , name:"مینا"},
-        {id:3 , image:"/images/team1.png" , name:"غزل"},
-        {id:4 , image:"/images/team2.png" , name:"سارا"},
-        {id:5 , image:"/images/team1.png" , name:"محمد"},
-        {id:6 , image:"/images/team2.png" , name:"محسن"},
-        {id:7 , image:"/images/team1.png" , name:"زهرا"},
-        {id:8 , image:"/images/team2.png" , name:"آسیه"},
+    const items = [
+        {id: 1, image: "/images/team1.png", name: "امیر"},
+        {id: 2, image: "/images/team2.png", name: "مینا"},
+        {id: 3, image: "/images/team1.png", name: "غزل"},
+        {id: 4, image: "/images/team2.png", name: "سارا"},
+        {id: 5, image: "/images/team1.png", name: "محمد"},
+        {id: 6, image: "/images/team2.png", name: "محسن"},
+        {id: 7, image: "/images/team1.png", name: "زهرا"},
+        {id: 8, image: "/images/team2.png", name: "آسیه"},
     ];
 
-    return(
+    return (
 
         <>
 
-            <div className="lg:hidden block">
+            <div className="block">
                 <TitlePages title="تیم ما"/>
             </div>
 
-            <div className="w-full lg:pr-14 lg:pl-14 pr-0 pl-0 lg:mt-16 mt-10">
+            <div className="w-full mx-auto lg:pr-14 lg:pl-14 px-5 lg:mt-16 mt-10">
 
-                <div className="w-full m-auto text-[18px] font-bold hidden lg:block">
-                    <p>تیم ما</p>
-                </div>
+                {/*<div className="w-full m-auto text-[18px] font-bold hidden lg:block">*/}
+                {/*    <p>تیم ما</p>*/}
+                {/*</div>*/}
 
                 <div className="m-auto mt-8">
 
@@ -62,7 +60,7 @@ const Team = ()=>{
                     >
 
                         {
-                            items.map((item , index)=>(
+                            items.map((item, index) => (
 
                                 <SwiperSlide key={index}>
 

@@ -1,21 +1,27 @@
-import Image from "next/image";
+"use client";
 
-const TeamModule = ({image , name})=>{
+import DefaultPerson from "../elements/DefaultPerson";
+import { useState } from "react";
 
-    return(
+const TeamModule = ({ image, name }) => {
+  const [hovered, setHovered] = useState(false);
 
-        <>
+  return (
+    <>
+      <div className="lg:w-[175px] h-[200px] rounded-2xl hover:bg-gray-300 transition duration-200 ex bg-gray-200 flex flex-col items-center justify-center pr-2 pl-2 relative group">
+        <DefaultPerson
+          width={100}
+          height={100}
+          className={`rounded-md ${hovered ? "hover-filter" : ""}`}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        />
+        <p className="transform -translate-y-1/2 font-bold opacity-0 group-hover:opacity-90 hover:text-red-500 text-xl text-red-700 mt-36">
+          {name}
+        </p>
+      </div>
+    </>
+  );
+};
 
-            <div className="lg:w-[175px] pr-2 pl-2 relative group">
-                <Image src={image} alt="omid" width={184} height={366} className="hover:opacity-30"/>
-                <p className="absolute top-1/2 right-5 transform -translate-y-1/2 font-bold opacity-0 group-hover:opacity-90 hover:text-red-500 text-xl text-red-700">{name}</p>
-            </div>
-
-        </>
-
-    )
-
-}
-
-
-export default TeamModule;
+export default TeamModule

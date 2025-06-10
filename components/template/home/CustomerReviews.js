@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -10,28 +10,18 @@ import "swiper/css/pagination";
 // import required modules
 import { Pagination } from "swiper/modules";
 import TitlePages from "../../module/TitlePages";
-import Link from "next/link";
-import Image from "next/image";
 import CardCustomerReview from "../../module/CardCustomerReview";
 
 const CustomerReviews = () => {
-  const items = [1, 2, 3, 4];
+  const items = [1, 2, 3, 4, 5,6];
 
   return (
     <>
-      <div className="lg:hidden block">
+      <div className="block">
         <TitlePages title="نظرات مشتریان" />
       </div>
 
-      <div className="w-full lg:pr-14 lg:pl-14 pr-0 pl-0 lg:mt-16 mt-10">
-        <div className="w-full m-auto text-[18px] font-bold hidden lg:flex justify-between">
-          <p>نظرات مشتریان</p>
-          <Link href="/" className="text-[#C1121F]">
-            {" "}
-            مشاهده بیشتر
-          </Link>
-        </div>
-
+      <div className="w-full lg:pr-14 lg:pl-14 px-5 lg:mt-16 mt-10">
         <div className="w-full m-auto mt-8">
           <Swiper
             slidesPerView={1}

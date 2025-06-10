@@ -2,13 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
-
-*{
+* {
   padding: 0;
   margin: 0;
   direction: rtl;
 }
+.hover-filter {
+  filter: blur(4px); /* یا هر مقدار دیگری که مایلید برای بلور استفاده کنید */
+}
 
+@font-face {
+  font-family: "azar";
+  src: url("/public/fonts/woff2/100-AzarMehr-Thin.woff2") format("woff2"),
+    url("/public/fonts/woff/100-AzarMehr-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "azar";
+  src: url("/public/fonts/woff2/200-AzarMehr-ExtraLight.woff2") format("woff2"),
+    url("/public/fonts/woff/200-AzarMehr-ExtraLight.woff") format("woff");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "azar";
+  src: url("/public/fonts/woff2/300-AzarMehr-Light.woff2") format("woff2"),
+    url("/public/fonts/woff/300-AzarMehr-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "azar";
+  src: url("/public/fonts/woff2/400-AzarMehr-Regular.woff2") format("woff2"),
+    url("/public/fonts/woff/400-AzarMehr-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "azar";
+  src: url("/public/fonts/woff2/500-AzarMehr-Medium.woff2") format("woff2"),
+    url("/public/fonts/woff/500-AzarMehr-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "azar";
+  src: url("/public/fonts/woff2/600-AzarMehr-SemiBold.woff2") format("woff2"),
+    url("/public/fonts/woff/600-AzarMehr-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "azar";
+  src: url("/public/fonts/woff2/700-AzarMehr-Bold.woff2") format("woff2"),
+    url("/public/fonts/woff/700-AzarMehr-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "azar";
+  src: url("/public/fonts/woff2/800-AzarMehr-ExtraBold.woff2") format("woff2"),
+    url("/public/fonts/woff/800-AzarMehr-ExtraBold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "azar";
+  src: url("/public/fonts/woff2/900-AzarMehr-Black.woff2") format("woff2"),
+    url("/public/fonts/woff/900-AzarMehr-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
 
 /* تنظیم موقعیت pagination برای موبایل */
 @media (max-width: 1023px) {
@@ -30,17 +103,14 @@
 
 /* تغییر رنگ دکمه‌های فعال */
 .swiper-pagination-bullet-active {
-  background-color: #C1121F !important;
+  background-color: #c1121f !important;
 }
 
-
-
-
-.no-scroll::-webkit-scrollbar{
+.no-scroll::-webkit-scrollbar {
   display: none;
 }
 
-.no-scroll{
+.no-scroll {
   -ms-overflow-style: none;
-  scrollbar-width:none;
+  scrollbar-width: none;
 }

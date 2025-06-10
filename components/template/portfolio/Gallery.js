@@ -19,7 +19,7 @@ const Gallery = ()=>{
 
         <>
 
-            <div className="w-full lg:pr-14 lg:pl-14 pr-0 pl-0 lg:mt-16 mt-10">
+            <div className="w-full lg:pr-14 lg:pl-14 pr-0 pl-0 lg:mt-16 mt-10 text-justify">
 
                 <div className="w-full m-auto text-[18px] font-bold hidden lg:flex justify-between">
                     <p>گالری تصویر</p>
