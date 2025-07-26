@@ -1,7 +1,9 @@
+import { numberToPersian } from "@/components/utils/EnNumberToFa";
 import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
+  const faNumberFormat = new Intl.NumberFormat('fa')
   return (
     <>
       <div className="w-full bg-[#740B13] m-auto mt-14 pr-14 pl-14 pt-12 pb-12 lg:flex hidden">
@@ -12,7 +14,7 @@ const Footer = () => {
             </div>
 
             <div className="w-full m-auto mt-8 text-white">
-              <p className="w-full">تلفن پشتیبانی : ۰۲۱۷۰۷۰۹۷۹۷</p>
+              <p className="w-full">تلفن پشتیبانی : {numberToPersian('02126612786')}</p>
               <p className="w-full mt-4">آدرس ایمیل : info@sparkup-agency.com</p>
             </div>
 
@@ -188,10 +190,10 @@ const Footer = () => {
         </div>
 
         <div className="w-full m-auto mt-10">
-          <div className="w-full m-auto">تلفن پشتیبانی : ۰۲۱۷۰۷۰۹۷۹۷</div>
+          <div className="w-full m-auto">تلفن پشتیبانی : {numberToPersian('02126612786')}</div>
 
           <div className="w-full m-auto mt-7">
-            آدرس ایمیل : tripjet@gmail.com
+            آدرس ایمیل : info@sparkup-agency.com
           </div>
 
           <div className="w-full m-auto mt-7 flex gap-x-5">
