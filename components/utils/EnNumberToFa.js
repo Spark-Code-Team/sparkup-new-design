@@ -1,23 +1,18 @@
-export function numberToPersian(number) {
-  const persian = {
-    0: "۰",
-    1: "۱",
-    2: "۲",
-    3: "۳",
-    4: "۴",
-    5: "۵",
-    6: "۶",
-    7: "۷",
-    8: "۸",
-    9: "۹",
-  };
-  number = number.toString().split("");
-  let persianNumber = "";
-  for (let i = 0; i < number.length; i++) {
-    number[i] = persian[number[i]];
-  }
-  for (let i = 0; i < number.length; i++) {
-    persianNumber += number[i];
-  }
-  return persianNumber;
-}
+const persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+const englishDigits = "0123456789";
+
+// تابعی برای تبدیل رشته‌ی حاوی اعداد انگلیسی به فارسی
+export const numberToPersian = (str) => {
+  // مطمئن می‌شویم که ورودی رشته است
+  const strValue = String(str);
+  return strValue.replace(/[0-9]/g, (w) => persianDigits[+w]);
+};
+
+// تابعی برای تبدیل رشته‌ی حاوی اعداد فارسی به انگلیسی
+export const numberToEnglish = (str) => {
+  const strValue = String(str);
+  return strValue.replace(
+    /[۰-۹]/g,
+    (w) => englishDigits[persianDigits.indexOf(w)]
+  );
+};

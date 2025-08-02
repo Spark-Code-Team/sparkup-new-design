@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "../components/module/navbar/Navbar";
 import Footer from "../components/module/footer/Footer";
+import { ToastProvider } from "@/components/context/ToastContext";
 
 export const metadata = {
   title: "اسپارک آپ",
@@ -11,11 +12,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa">
       <body className="bg-white font-">
-
-        <Navbar/>
-        {children}
-        <Footer/>
-
+        <Navbar />
+        <ToastProvider>{children}</ToastProvider>
+        <Footer />
       </body>
     </html>
   );

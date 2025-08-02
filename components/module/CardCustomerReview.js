@@ -3,7 +3,7 @@ import Image from "next/image";
 const CardCustomerReview = () => {
   return (
     <>
-      <div className="lg:h-[200px] w-[400px]  border-[1.5px] border-[#DADADA] pt-1 pb-4 flex flex-wrap rounded-2xl">
+      <div className="lg:h-[200px] lg:w-[400px] w-[300px] border-[1.5px] border-[#DADADA] pt-1 pb-4 flex flex-wrap rounded-2xl">
         <div className="w-full m-auto mt-5 flex items-center pr-4 pl-4">
           <div className="lg:w-[56px] lg:h-[56px] w-[56px] h-[56px] rounded-full flex items-center">
             <Image src="/images/customer.png" alt="" width={56} height={56} />
@@ -17,11 +17,41 @@ const CardCustomerReview = () => {
                 <p className="font-semibold text-[13px]">آقای عرب زاده</p>
               </div>
               <div className="lg:mt-2 lg:mr-3 mt-5 flex">
-                <Image src="/images/star.png" alt="" width={16} height={16} className="w-3 h-3"/>
-                <Image src="/images/star.png" alt="" width={16} height={16} className="w-3 h-3"/>
-                <Image src="/images/star.png" alt="" width={16} height={16} className="w-3 h-3"/>
-                <Image src="/images/star.png" alt="" width={16} height={16} className="w-3 h-3"/>
-                <Image src="/images/star.png" alt="" width={16} height={16} className="w-3 h-3"/>
+                <Image
+                  src="/images/star.png"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="w-3 h-3"
+                />
+                <Image
+                  src="/images/star.png"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="w-3 h-3"
+                />
+                <Image
+                  src="/images/star.png"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="w-3 h-3"
+                />
+                <Image
+                  src="/images/star.png"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="w-3 h-3"
+                />
+                <Image
+                  src="/images/star.png"
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="w-3 h-3"
+                />
               </div>
             </div>
           </div>

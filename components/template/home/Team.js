@@ -22,9 +22,10 @@ const Team = () => {
         {id: 5, image: "/images/team1.png", name: "محمد"},
         {id: 6, image: "/images/team2.png", name: "محسن"},
         {id: 7, image: "/images/team1.png", name: "زهرا"},
-        {id: 8, image: "/images/team2.png", name: "آسیه"},
-    ];
+        {id: 8, image: "/images/team2.png", name: "آسیه"},        
+        {id: 9, image: "/images/team2.png", name: "نرگس"},
 
+    ];
     return (
 
         <>

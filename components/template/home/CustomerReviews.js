@@ -11,41 +11,26 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import TitlePages from "../../module/TitlePages";
 import CardCustomerReview from "../../module/CardCustomerReview";
+import CustomSwiper from "@/components/elements/CustomSwiper";
 
 const CustomerReviews = () => {
-  const items = [1, 2, 3, 4, 5,6];
+  const items = [1, 2, 3, 4, 5, 6];
 
   return (
     <>
       <div className="block">
-        <TitlePages title="نظرات مشتریان" />
+        <TitlePages title="رضایت مشتریان" />
       </div>
 
-      <div className="w-full lg:pr-14 lg:pl-14 px-5 lg:mt-16 mt-10">
-        <div className="w-full m-auto mt-8">
-          <Swiper
-            slidesPerView={1}
-            spaceBetween={18}
-            pagination={{
-              clickable: true,
-            }}
-            breakpoints={{
-              650: {
-                slidesPerView: 1, // در حالت موبایل، 1 کارت نشان داده می‌شود
-              },
-              1024: {
-                slidesPerView: 3, // در حالت دسکتاپ، 3 کارت نشان داده می‌شود
-              },
-            }}
-            modules={[Pagination]}
-            className="mySwiper"
-          >
-            {items.map((item, index) => (
-              <SwiperSlide key={index}>
+      <div className="w-full">
+        <div className="w-full ">
+          <CustomSwiper>
+            {items.map((item) => (
+              <div className="flex flex-row items-center justify-center">
                 <CardCustomerReview />
-              </SwiperSlide>
+              </div>
             ))}
-          </Swiper>
+          </CustomSwiper>
         </div>
       </div>
     </>

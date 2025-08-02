@@ -13,72 +13,73 @@
 
 @font-face {
   font-family: "azar";
-  src: url("/public/fonts/woff2/100-AzarMehr-Thin.woff2") format("woff2"),
-    url("/public/fonts/woff/100-AzarMehr-Thin.woff") format("woff");
+  src: url("../public/fonts/woff2/100-AzarMehr-Thin.woff2") format("woff2"),
+    url("../public/fonts/woff/100-AzarMehr-Thin.woff") format("woff");
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: "azar";
-  src: url("/public/fonts/woff2/200-AzarMehr-ExtraLight.woff2") format("woff2"),
-    url("/public/fonts/woff/200-AzarMehr-ExtraLight.woff") format("woff");
+  src: url("../public/fonts/woff2/200-AzarMehr-ExtraLight.woff2")
+      format("woff2"),
+    url("../public/fonts/woff/200-AzarMehr-ExtraLight.woff") format("woff");
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: "azar";
-  src: url("/public/fonts/woff2/300-AzarMehr-Light.woff2") format("woff2"),
-    url("/public/fonts/woff/300-AzarMehr-Light.woff") format("woff");
+  src: url("../public/fonts/woff2/300-AzarMehr-Light.woff2") format("woff2"),
+    url("../public/fonts/woff/300-AzarMehr-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: "azar";
-  src: url("/public/fonts/woff2/400-AzarMehr-Regular.woff2") format("woff2"),
-    url("/public/fonts/woff/400-AzarMehr-Regular.woff") format("woff");
+  src: url("../public/fonts/woff2/400-AzarMehr-Regular.woff2") format("woff2"),
+    url("../public/fonts/woff/400-AzarMehr-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "azar";
-  src: url("/public/fonts/woff2/500-AzarMehr-Medium.woff2") format("woff2"),
-    url("/public/fonts/woff/500-AzarMehr-Medium.woff") format("woff");
+  src: url("../public/fonts/woff2/500-AzarMehr-Medium.woff2") format("woff2"),
+    url("../public/fonts/woff/500-AzarMehr-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: "azar";
-  src: url("/public/fonts/woff2/600-AzarMehr-SemiBold.woff2") format("woff2"),
-    url("/public/fonts/woff/600-AzarMehr-SemiBold.woff") format("woff");
+  src: url("../public/fonts/woff2/600-AzarMehr-SemiBold.woff2") format("woff2"),
+    url("../public/fonts/woff/600-AzarMehr-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "azar";
-  src: url("/public/fonts/woff2/700-AzarMehr-Bold.woff2") format("woff2"),
-    url("/public/fonts/woff/700-AzarMehr-Bold.woff") format("woff");
+  src: url("../public/fonts/woff2/700-AzarMehr-Bold.woff2") format("woff2"),
+    url("../public/fonts/woff/700-AzarMehr-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "azar";
-  src: url("/public/fonts/woff2/800-AzarMehr-ExtraBold.woff2") format("woff2"),
-    url("/public/fonts/woff/800-AzarMehr-ExtraBold.woff") format("woff");
+  src: url("../public/fonts/woff2/800-AzarMehr-ExtraBold.woff2") format("woff2"),
+    url("../public/fonts/woff/800-AzarMehr-ExtraBold.woff") format("woff");
   font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: "azar";
-  src: url("/public/fonts/woff2/900-AzarMehr-Black.woff2") format("woff2"),
-    url("/public/fonts/woff/900-AzarMehr-Black.woff") format("woff");
+  src: url("../public/fonts/woff2/900-AzarMehr-Black.woff2") format("woff2"),
+    url("../public/fonts/woff/900-AzarMehr-Black.woff") format("woff");
   font-weight: 900;
   font-style: normal;
 }
@@ -113,4 +114,77 @@
 .no-scroll {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* styles/globals.css */
+
+/* تم سفارشی قرمز و نارنجی برای react-multi-date-picker */
+.red-orange-theme.rmdp-container {
+  width: 100% !important;
+}
+
+/* هدر تقویم (نام ماه و دکمه‌های جهت) */
+.red-orange-theme .rmdp-header-values,
+.red-orange-theme .rmdp-arrow {
+  color: #ef4444 !important; /* Red-500 */
+  font-weight: bold;
+}
+
+/* روزهای هفته (شنبه، یکشنبه و ...) */
+.red-orange-theme .rmdp-week-day {
+  color: #f97316 !important; /* Orange-500 */
+}
+
+/* استایل کلی روزها */
+.red-orange-theme .rmdp-day {
+  width: 38px !important;
+  height: 38px !important;
+  font-size: 0.875rem !important;
+  transition: all 0.2s ease-in-out;
+  border-radius: 9999px !important;
+}
+
+/* هاور روی روزها */
+.red-orange-theme
+  .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden)
+  span:hover {
+  background-color: #fee2e2 !important; /* Red-100 */
+  color: #dc2626 !important; /* Red-600 */
+}
+.dark
+  .red-orange-theme
+  .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden)
+  span:hover {
+  background-color: #7f1d1d !important; /* Red-900 */
+}
+
+/* روز انتخاب شده */
+.red-orange-theme .rmdp-day.rmdp-selected span:not(.rmdp-disabled) {
+  background-color: #ef4444 !important; /* Red-500 */
+  color: #fff !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+  transform: scale(1.05);
+}
+
+/* روز جاری (امروز) */
+.red-orange-theme .rmdp-day.rmdp-today span {
+  background-color: transparent !important;
+  box-shadow: none;
+  border: 2px solid #f97316; /* Orange-500 */
+  color: #f97316 !important;
+}
+
+/* استایل انتخابگر زمان */
+.red-orange-theme .rmdp-time-picker .rmdp-arrow {
+  border-color: #f97316 !important;
+}
+.red-orange-theme .rmdp-time-picker input {
+  background-color: #f1f5f9; /* Slate-100 */
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  color: #ef4444;
+}
+.dark .red-orange-theme .rmdp-time-picker input {
+  background-color: #1e293b; /* Slate-800 */
 }

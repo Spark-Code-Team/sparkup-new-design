@@ -1,0 +1,32 @@
+
+.my-minimal-swiper {
+  padding-top: 20px;
+  padding-bottom: 50px; 
+}
+
+
+.my-minimal-swiper .swiper-slide {
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+  opacity: 0.5; 
+  transform: scale(0.85); 
+}
+
+
+.my-minimal-swiper .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+.my-minimal-swiper .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  background-color: #a0a0a0;
+  transition: width 0.3s ease;
+}
+
+.my-minimal-swiper .swiper-pagination-bullet-active {
+  width: 24px;
+  border-radius: 5px;
+  background-color: #333;
+}
