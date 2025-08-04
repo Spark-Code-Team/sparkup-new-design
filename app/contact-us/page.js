@@ -21,10 +21,14 @@ export default function ContactUs() {
             می‌دیم زود برگردیم سراغت :)
           </h4>
         </div>
-        <ContactUsForm />
+
+        <div id="contact-form" className="w-full flex justify-center">
+          <ContactUsForm />
+        </div>
+
         <div>
           <TitlePages title={"راه‌های دیگه هم هست…"} />
-          <div className="mt-10">
+          <div className="mt-10 md:mx-0 mx-2">
             <ContactWaysCard />
           </div>
         </div>

@@ -4,13 +4,27 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
-import { numberToEnglish, numberToPersian } from "../utils/EnNumberToFa";
 
-const CustomInput = ({ label, id, className, type = "text", ...props }) => {
-  const [value, setValue] = useState("");
+const numberToEnglish = (str) =>
+  String(str).replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+const numberToPersian = (str) =>
+  String(str).replace(/[0-9]/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
+
+const CustomInput = ({
+  label,
+  id,
+  className,
+  type = "text",
+  value: controlledValue,
+  onChange,
+  ...props
+}) => {
+  const [internalValue, setInternalValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
-  // ... (کدهای variants بدون تغییر باقی می‌مانند) ...
+  const isControlled = controlledValue !== undefined;
+  const value = isControlled ? controlledValue : internalValue;
+
   const containerVariants = {
     rest: {
       scale: 1,
@@ -31,46 +45,43 @@ const CustomInput = ({ label, id, className, type = "text", ...props }) => {
         "0px 2px 8px rgba(239, 68, 68, 0.3), inset 0px 2px 4px rgba(0,0,0,0.3)",
     },
   };
-
   const labelVariants = {
-    initial: {
-      top: "50%",
-      y: "-50%",
-      scale: 1,
-      color: "#000",
-    },
+    initial: { top: "50%", y: "-50%", scale: 1, color: "#000" },
     animate: {
       top: "8px",
       y: "0%",
-      scale: id === "pages" || id === "about" ? 0.0 : 0.8,
+      scale: 0.8,
       color: isFocused ? "#103b69" : "#00000",
     },
   };
 
-  const isFloating = isFocused || value;
+  const isFloating = isFocused || (value && value.length > 0);
 
   const handleChange = (e) => {
-    // مقدار ورودی کاربر را به انگلیسی تبدیل کرده و در state ذخیره می‌کنیم
     const englishValue = numberToEnglish(e.target.value);
-    setValue(englishValue);
+
+    if (!isControlled) {
+      setInternalValue(englishValue);
+    }
+    if (onChange) {
+      onChange(englishValue);
+    }
   };
 
   return (
-    <div style={{ perspective: "1000px" }}>
+    <div style={{ perspective: "1000px" }} className="w-full">
       <motion.div
-        // ... (props های motion.div بدون تغییر) ...
         variants={containerVariants}
         initial="rest"
         whileHover="hover"
         animate={isFocused ? "focus" : "rest"}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         className={twMerge(
-          "relative inline-flex min-w-56 h-16 rounded-xl bg-gradient-to-br from-red-300 to-orange-300",
+          "relative inline-flex w-full h-16 rounded-xl bg-gradient-to-br from-red-300 to-orange-300",
           className
         )}
       >
         <motion.label
-          // ... (props های motion.label بدون تغییر) ...
           htmlFor={id}
           variants={labelVariants}
           initial="initial"
@@ -80,15 +91,14 @@ const CustomInput = ({ label, id, className, type = "text", ...props }) => {
         >
           {label}
         </motion.label>
-
         <input
           id={id}
           type={type}
-          value={numberToPersian(value)}
+          value={numberToPersian(value || "")}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           onChange={handleChange}
-          className="w-full h-full pt-5 px-4 bg-transparent text-black text-base outline-none text-right" // 👈 به text-right دقت کنید
+          className="w-full h-full pt-5 px-4 bg-transparent text-black text-sm md:text-base outline-none text-right"
           {...props}
         />
       </motion.div>

@@ -2,10 +2,23 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import ReactDOM from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 
-// کامپوننت آیکون شورون (پیکان)
+const Portal = ({ children }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  return mounted
+    ? ReactDOM.createPortal(children, document.querySelector("body"))
+    : null;
+};
+
 const ChevronIcon = ({ isOpen }) => (
   <motion.svg
     xmlns="http://www.w3.org/2000/svg"
@@ -25,33 +38,59 @@ const ChevronIcon = ({ isOpen }) => (
   </motion.svg>
 );
 
-const CustomSelect = ({ label, options, onSelect, className }) => {
+const CustomSelect = ({
+  label,
+  options,
+  value: controlledValue,
+  onChange,
+  onSelect,
+  className,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [internalValue, setInternalValue] = useState(null);
   const selectRef = useRef(null);
+
+  const [dropdownPosition, setDropdownPosition] = useState({});
+
+  const isControlled = controlledValue !== undefined;
+  const value = isControlled ? controlledValue : internalValue;
+  const selectedOption = options.find((opt) => opt.value === value) || null;
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (selectRef.current && !selectRef.current.contains(event.target)) {
+      if (selectRef.current && !selectRef.current.contains(event.target))
         setIsOpen(false);
-      }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleSelect = (option) => {
-    setSelectedOption(option);
-    setIsOpen(false);
-    if (onSelect) {
-      onSelect(option); // پاس دادن کل آبجکت option
+    if (!isControlled) {
+      setInternalValue(option.value);
     }
+    if (onChange) {
+      onChange(option.value);
+    }
+    if (onSelect) {
+      onSelect(option);
+    }
+    setIsOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    if (!isOpen) {
+      const rect = selectRef.current.getBoundingClientRect();
+      setDropdownPosition({
+        top: rect.bottom + window.scrollY + 8,
+        left: rect.left + window.scrollX,
+        width: rect.width,
+      });
+    }
+    setIsOpen(!isOpen);
   };
 
   const isFloating = isOpen || selectedOption;
-  const isFocused = isOpen; // حالت فوکوس را معادل باز بودن لیست در نظر می‌گیریم
-
-  // انیمیشن‌های کانتینر اصلی (دقیقا مشابه قبل)
   const containerVariants = {
     rest: {
       scale: 1,
@@ -72,18 +111,15 @@ const CustomSelect = ({ label, options, onSelect, className }) => {
         "0px 2px 8px rgba(239, 68, 68, 0.3), inset 0px 2px 4px rgba(0,0,0,0.3)",
     },
   };
-
   const labelVariants = {
     initial: { top: "50%", y: "-50%", scale: 1, color: "#000" },
     animate: {
       top: "8px",
       y: "0%",
       scale: 0.6,
-      color: isFocused ? "#103b69" : "#00000",
+      color: isOpen ? "#103b69" : "#00000",
     },
   };
-
-  // انیمیشن لیست گزینه‌ها
   const listVariants = {
     hidden: { opacity: 0, scale: 0.95, y: -10 },
     visible: {
@@ -95,16 +131,16 @@ const CustomSelect = ({ label, options, onSelect, className }) => {
   };
 
   return (
-    <div style={{ perspective: "1000px" }} ref={selectRef}>
+    <div style={{ perspective: "1000px" }} ref={selectRef} className="w-full">
       <motion.div
         variants={containerVariants}
         initial="rest"
         whileHover="hover"
-        animate={isFocused ? "focus" : "rest"}
+        animate={isOpen ? "focus" : "rest"}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleDropdown}
         className={twMerge(
-          "'relative inline-flex min-w-56 h-16 rounded-xl bg-gradient-to-br from-red-300 to-orange-300 cursor-pointer  items-center px-4",
+          "'relative inline-flex w-full h-16 rounded-xl bg-gradient-to-br from-red-300 to-orange-300 cursor-pointer items-center px-4",
           className
         )}
       >
@@ -119,35 +155,42 @@ const CustomSelect = ({ label, options, onSelect, className }) => {
             {label}
           </motion.label>
           {selectedOption && (
-            <span className="absolute top-1/2 -translate-y-1/4 text-sky-700 text-base">
-              {selectedOption.label}
+            <span className="absolute top-1/2 -translate-y-1/4 text-sky-700 text-sm md:text-base">
+              {" "}
+              {selectedOption.label}{" "}
             </span>
           )}
         </div>
         <ChevronIcon isOpen={isOpen} />
       </motion.div>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.ul
-            variants={listVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className="absolute z-10 w-full mt-2 bg-gradient-to-br from-red-300 to-orange-300 rounded-lg shadow-2xl overflow-hidden"
-          >
-            {options.map((option) => (
-              <li
-                key={option.value}
-                onClick={() => handleSelect(option)}
-                className="px-4 py-3 text-white hover:bg-gradient-to-br hover:from-red-500 hover:to-orange-500 cursor-pointer transition-all duration-500 ease-in-out"
-              >
-                {option.label}
-              </li>
-            ))}
-          </motion.ul>
-        )}
-      </AnimatePresence>
+      <Portal>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.ul
+              variants={listVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              style={{
+                position: "absolute",
+                ...dropdownPosition,
+              }}
+              className="z-50 bg-gradient-to-br from-red-300 to-orange-300 rounded-lg shadow-2xl overflow-hidden"
+            >
+              {options.map((option) => (
+                <li
+                  key={option.value}
+                  onClick={() => handleSelect(option)}
+                  className="px-4 py-3 text-sky-900 hover:bg-gradient-to-br hover:from-red-500 hover:to-orange-500 cursor-pointer transition-all duration-500 ease-in-out"
+                >
+                  {option.label}
+                </li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </Portal>
     </div>
   );
 };

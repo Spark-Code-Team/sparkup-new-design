@@ -1,160 +1,189 @@
+// components/Navbar.jsx
+
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import ArrowDown from "../../../public/icons/ArrowDown";
+import { motion, AnimatePresence } from "framer-motion";
+
+// تعریف متغیرهای انیمیشن برای خوانایی بهتر
+const sidebarVariants = {
+  open: {
+    x: 0,
+    transition: { type: "spring", stiffness: 300, damping: 30 },
+  },
+  closed: {
+    x: "100%",
+    transition: { type: "spring", stiffness: 300, damping: 30 },
+  },
+};
+
+const backdropVariants = {
+  open: { opacity: 1 },
+  closed: { opacity: 0 },
+};
+
+const navLinks = [
+  { name: "صفحه اصلی", href: "/" },
+  { name: "نمونه کارها", href: "/portfolio" },
+  { name: "خدمات", href: "/services" },
+  { name: "فرصت‌های شغلی", href: "/job" },
+  {
+    name: "مقالات و منابع",
+    href: "http://blog.sparkup-agency.com",
+    isExternal: true,
+  },
+  { name: "درباره ما", href: "/about" },
+  { name: "تماس با ما", href: "/contact-us" },
+  { name: "پرسش‌های متداول", href: "/faq" },
+];
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const [openMenu, setOpenMenu] = useState(false);
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
+  }, [isMenuOpen]);
 
-    useEffect(() => {
-        if (openMenu) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-    }, [openMenu]);
+  const closeMenu = () => setIsMenuOpen(false);
 
-    return (
-        <>
-            {/* نوبار اصلی */}
-            <div className="w-full h-[80px] flex justify-between items-center px-7 border-b border-gray-200 lg:hidden">
-                <button onClick={() => setOpenMenu(true)}>
-                    <Image src="/images/hamber.png" alt="Menu" width={36} height={24} />
+  return (
+    <>
+      {/* Navbar for Mobile */}
+      <nav className="w-full h-[80px] flex justify-between items-center px-7 border-b border-gray-200 lg:hidden">
+        <button onClick={() => setIsMenuOpen(true)}>
+          <Image src="/images/hamber.png" alt="Menu" width={36} height={24} />
+        </button>
+        <Link href="/">
+          <Image
+            src="/images/spark.png"
+            alt="SparkUP Logo"
+            width={99}
+            height={30}
+          />
+        </Link>
+      </nav>
+
+      {/* Sidebar for Mobile */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <div className="fixed inset-0 z-50 flex lg:hidden font-azar font-bold">
+            <motion.div
+              variants={backdropVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              className="absolute inset-0 bg-black bg-opacity-50"
+              onClick={closeMenu}
+            />
+            <motion.div
+              variants={sidebarVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              className="w-[80%] sm:w-[60%] md:w-[40%] h-full bg-white shadow-2xl absolute right-0 top-0 p-6"
+            >
+              <div className="w-full flex justify-end">
+                <button onClick={closeMenu}>
+                  <Image
+                    src="/images/clear.png"
+                    alt="Close"
+                    width={24}
+                    height={24}
+                  />
                 </button>
+              </div>
 
-                <Link href="/">
-                    <Image src="/images/spark.png" alt="Logo" width={99} height={30} />
-                </Link>
-            </div>
+              <motion.ul
+                className="flex flex-col items-center mt-8 space-y-4"
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={{
+                  open: {
+                    transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+                  },
+                  closed: {
+                    transition: { staggerChildren: 0.05, staggerDirection: -1 },
+                  },
+                }}
+              >
+                {navLinks.map((link) => (
+                  <motion.li
+                    key={link.name}
+                    variants={{
+                      open: {
+                        y: 0,
+                        opacity: 1,
+                        transition: { y: { stiffness: 1000, velocity: -100 } },
+                      },
+                      closed: {
+                        y: 50,
+                        opacity: 0,
+                        transition: { y: { stiffness: 1000 } },
+                      },
+                    }}
+                    className="w-full"
+                  >
+                    <Link
+                      href={link.href}
+                      target={link.isExternal ? "_blank" : "_self"}
+                      rel={link.isExternal ? "noopener noreferrer" : ""}
+                      className="block w-full p-3 text-base text-center border-b border-gray-200 rounded-lg hover:bg-gray-100"
+                      onClick={closeMenu}
+                    >
+                      {link.name}
+                    </Link>
+                  </motion.li>
+                ))}
+                {/* <motion.li
+                  variants={{
+                    open: { y: 0, opacity: 1 },
+                    closed: { y: 50, opacity: 0 },
+                  }}
+                  className="w-full pt-4"
+                >
+                  <button className="w-full bg-[#C1121F] text-white py-3 rounded-lg font-bold hover:bg-[#a5101a] transition-colors">
+                    ورود / ثبت نام
+                  </button>
+                </motion.li> */}
+              </motion.ul>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
-            {/* سایدبار */}
-            {openMenu && (
-                <div className="fixed inset-0 z-50 flex lg:hidden">
-                    {/* پس‌زمینه تیره برای مودال */}
-                    <div className="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300" onClick={() => setOpenMenu(false)}> </div>
-
-                    {/* منو */}
-                    <div className="w-[80%] sm:w-[60%] md:w-[40%] h-screen bg-white shadow-2xl absolute right-0 top-0 p-6 transition-transform duration-300 translate-x-0">
-                        {/* دکمه بستن */}
-                        <div className="w-full flex justify-end">
-                            <button onClick={() => setOpenMenu(false)}>
-                                <Image src="/images/clear.png" alt="Close" width={24} height={24} />
-                            </button>
-                        </div>
-
-                        {/* لینک‌های منو */}
-                        <div className="flex flex-col items-center mt-8 space-y-6">
-
-                            <Link href="/" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
-                                صفحه اصلی
-                            </Link>
-
-                            <Link href="/services" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
-                                خدمات
-                            </Link>
-
-                            <Link href="/portfolio" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
-                                نمونه کارها
-                            </Link>
-
-                            <a href="http://blog.sparkup-agency.com" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
-                                مقالات و منابع
-                            </a>
-
-                            <Link href="/about" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
-                                درباره ما
-                            </Link>
-
-                            {/* <Link href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
-                                تماس با ما
-                            </Link>
-
-                            <Link href="#" className="w-full p-3 border-b border-gray-300 text-base rounded-xl" onClick={()=>setOpenMenu(false)}>
-                                پرسش های متداول
-                            </Link> */}
-
-                            {/* دکمه ورود */}
-                            <button className="w-full bg-[#C1121F] text-white py-3 rounded-lg font-bold mt-6">
-                                ورود / ثبت نام
-                            </button>
-
-                        </div>
-
-                    </div>
-                </div>
-            )}
-
-
-
-
-
-
-            {/*  desktop navbar  */}
-
-            <div className=" w-full h-[96px] bg-white lg:flex hidden justify-between items-center pr-10 pl-10 border-b-[1.5px] border-[#DADADA] fixed top-0 z-50">
-
-                <div>
-                    <Image src="/images/spark.png" alt="" width={85} height={26}/>
-                </div>
-
-                <div className="text-base">
-                    <ul className="flex">
-
-                        <li className="p-5">
-                            <Link href="/">صفحه اصلی</Link>
-                        </li>
-
-                        <li className="p-5">
-                            <Link href="/services">خدمات</Link>
-                        </li>
-
-                        <li className="p-5">
-                            <Link href="/portfolio">نمونه کارها</Link>
-                        </li>
-
-                        <li className="p-5 relative group">
-                            <a href="http://blog.sparkup-agency.com" className="flex items-center">
-                                مقالات و منابع
-                                {/* <ArrowDown/> */}
-                            </a>
-
-                            {/* <ul className="bg-red-600 absolute w-[150px] h-[200px] mt-5 hidden group-hover:block rounded-lg shadow-lg">
-                                <li>
-                                    <a href="#" className="w-full mt-5 block pr-3">lorem</a>
-                                </li>
-                                <li>
-                                    <a href="#" className="w-full mt-5 block pr-3">lorem</a>
-                                </li>
-                            </ul> */}
-
-                        </li>
-
-                        <li className="p-5">
-                            <Link href="/about">درباره ما</Link>
-                        </li>
-
-                        {/* <li className="p-5">
-                            <Link href="/">تماس با ما</Link>
-                        </li>
-
-                        <li className="p-5">
-                            <Link href="/">پرسش های متداول</Link>
-                        </li> */}
-
-                    </ul>
-                </div>
-
-                <div className="w-[119px] h-[40px] bg-red-500 flex items-center justify-center rounded-md text-white">
-                    <a href="#">ورود/ثبت نام</a>
-                </div>
-
-            </div>
-
-
-        </>
-    );
+      {/* Navbar for Desktop */}
+      <nav className="w-full h-[96px] bg-white lg:flex hidden justify-between items-center px-10 border-b-[1.5px] border-[#DADADA] fixed top-0 z-40">
+        <div>
+          <Image
+            src="/images/spark.png"
+            alt="SparkUP Logo"
+            width={85}
+            height={26}
+          />
+        </div>
+        <ul className="flex text-sm font-bold font-azar items-start gap-0 -mr-72 ">
+          {navLinks.map((link) => (
+            <motion.li
+              key={link.name}
+              className="p-5"
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <Link
+                href={link.href}
+                target={link.isExternal ? "_blank" : "_self"}
+                rel={link.isExternal ? "noopener noreferrer" : ""}
+              >
+                {link.name}
+              </Link>
+            </motion.li>
+          ))}
+        </ul>
+      </nav>
+    </>
+  );
 };
 
 export default Navbar;
