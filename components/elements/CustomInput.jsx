@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // 1.
 
 const numberToEnglish = (str) =>
   String(str).replace(/[۰-۹]/g, (d) => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
@@ -21,6 +22,7 @@ const CustomInput = ({
 }) => {
   const [internalValue, setInternalValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const isControlled = controlledValue !== undefined;
   const value = isControlled ? controlledValue : internalValue;
@@ -68,6 +70,11 @@ const CustomInput = ({
     }
   };
 
+  const inputType = type === "password" && isPasswordVisible ? "text" : type;
+
+  const displayValue =
+    type === "password" ? value || "" : numberToPersian(value || "");
+
   return (
     <div style={{ perspective: "1000px" }} className="w-full">
       <motion.div
@@ -91,9 +98,21 @@ const CustomInput = ({
         >
           {label}
         </motion.label>
+        {type === "password" && (
+          <button
+            type="button"
+            onClick={() => setIsPasswordVisible((prev) => !prev)}
+            // دکمه در سمت چپ و داخل padding فعلی قرار می‌گیرد
+            className="absolute inset-y-0 left-4 flex items-center z-10 text-gray-600 hover:text-gray-900"
+            aria-label="Toggle password visibility"
+          >
+            {isPasswordVisible ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+          </button>
+        )}
+
         <input
           id={id}
-          type={type}
+          type={inputType}
           value={numberToPersian(value || "")}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}

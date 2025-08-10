@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { FaBars, FaGripLinesVertical } from "react-icons/fa";
 
 // تعریف متغیرهای انیمیشن برای خوانایی بهتر
 const sidebarVariants = {
@@ -52,11 +53,11 @@ const Navbar = () => {
       {/* Navbar for Mobile */}
       <nav className="w-full h-[80px] flex justify-between items-center px-7 border-b border-gray-200 lg:hidden">
         <button onClick={() => setIsMenuOpen(true)}>
-          <Image src="/images/hamber.png" alt="Menu" width={36} height={24} />
+          <FaBars className="w-8 h-8" />
         </button>
         <Link href="/">
           <Image
-            src="/images/spark.png"
+            src="/images/sparkup-logo.svg"
             alt="SparkUP Logo"
             width={99}
             height={30}
@@ -157,7 +158,7 @@ const Navbar = () => {
       <nav className="w-full h-[96px] bg-white lg:flex hidden justify-between items-center px-10 border-b-[1.5px] border-[#DADADA] fixed top-0 z-40">
         <div>
           <Image
-            src="/images/spark.png"
+            src="/images/sparkup-logo.svg"
             alt="SparkUP Logo"
             width={85}
             height={26}

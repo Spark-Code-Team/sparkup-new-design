@@ -20,7 +20,7 @@ export default function ReservationForm() {
         id: "row1",
         fields: [
           {
-            id: "first_name",
+            id: "full_name",
             label: "اسمت چیه؟",
             component: "CustomInput",
             className: "md:w-96",
@@ -29,7 +29,7 @@ export default function ReservationForm() {
             id: "email",
             label: "ایمیلت رو بذار!",
             component: "CustomInput",
-            type: "email",
+            type: "text",
             className: "md:w-96",
           },
         ],
@@ -38,21 +38,42 @@ export default function ReservationForm() {
         id: "row2",
         fields: [
           {
-            id: "about",
+            id: "text",
             label: "در مورد چی می‌خوای حرف بزنیم؟",
             component: "CustomInput",
             className: "md:w-96",
           },
           {
-            id: "phone",
+            id: "mobile",
             label: "شماره تماس",
             component: "CustomInput",
-            type: "number",
+            type: "phone",
             className: "md:w-96",
           },
         ],
       },
     ],
+
+    api: {
+      url: "reservation-form/", // آدرس endpoint
+      method: "POST", // متد HTTP
+      submissionType: "json", // 'json' یا 'formData'
+    },
+
+    // --- Callbacks برای مدیریت نتیجه ---
+    onSuccess: (response) => {
+      console.log("پاسخ موفقیت آمیز:", response.data);
+      addToast("پیام شما با موفقیت ارسال شد.", "success");
+      // اینجا می‌توانید کارهای دیگر مثل ریدایرکت کردن کاربر را انجام دهید
+      // window.location.href = '/thank-you';
+    },
+
+    onError: (error) => {
+      console.error("خطا در ارسال:", error);
+      const errorMessage =
+        error.response?.data?.message || "مشکلی در ارسال فرم پیش آمد.";
+      addToast(errorMessage, "error");
+    },
   };
 
   const handleFormSubmit = async (formData) => {

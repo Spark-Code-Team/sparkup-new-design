@@ -14,7 +14,7 @@ const mainPageServices = [
     id: 1,
     title: "بازاریابی محتوایی",
     description: "محتوای حرفه‌ای و جذاب که مخاطبت همیشه بهش برمی‌گرده!",
-    image: "/images/i1.png",
+    image: "/images/bazar.png",
   },
   {
     id: 2,
@@ -76,9 +76,9 @@ const SparkUp = () => {
   }, []);
 
   return (
-    <>
+    <div className={''}>
       {/*   mobile   */}
-      <div className="w-full mt-10 lg:hidden flex flex-col items-center justify-evenly gap-4">
+      <div className="w-full mt-10 font-azar lg:hidden flex flex-col items-center justify-evenly gap-4">
         <div>
           <div className="w-[88%] m-auto flex flex-col items-center justify-evenly gap-4 text-justify">
             <div className="w-full m-auto flex justify-center mt-6">
@@ -136,14 +136,16 @@ const SparkUp = () => {
 
       {/*  desktop  */}
 
-      <div className="w-full mt-24 lg:flex lg:flex-col lg:gap-x-10 hidden pr-14 pl-14 gap-10">
-        <div className="lg:w-full  m-auto flex justify-center items-center">
+      <div className="w-full mt-24 lg:flex lg:flex-col lg:gap-x-10 hidden  gap-10">
+        <div className="-mx-[calc(55vw-50%)] ">
           <Image
-            src="/images/main-banner.svg"
-            alt=""
-            width={392}
-            height={310}
-            className={"w-full h-[500px] mt-10"}
+              src="/images/main-banner.png"
+              alt=""
+              width={2000}
+              height={2000}
+              sizes="100vw"
+              className="w-full h-auto mt-10 block"
+              priority
           />
         </div>
         <div className="lg:w-1/2 text-center mx-auto flex flex-wrap justify-center gap-4 items-center">
@@ -211,7 +213,7 @@ const SparkUp = () => {
                     width={100}
                     height={100}
                     containerClassName="w-72" // اندازه ثابت برای کارت‌های گرید
-                    imageClassName={"p-5 h-32 w-32 self-center"}
+                    imageClassName={"p-5 h-40 w-40 self-center"}
                   />
                 </motion.div>
               ))}
@@ -299,7 +301,7 @@ const SparkUp = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

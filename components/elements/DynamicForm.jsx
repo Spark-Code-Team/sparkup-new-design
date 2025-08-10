@@ -5,12 +5,10 @@ import { PulsingBeacon } from "@/components/animations/PulsingBeacon";
 import CustomButton from "@/components/elements/CustomButton";
 import CustomInput from "@/components/elements/CustomInput";
 import JalaliDateTimePicker from "@/components/elements/JalaliDateTimePicker";
-import TitlePages from "@/components/module/TitlePages";
+import apiClient from "@/lib/apiClient";
 import CustomSelect from "./CustomSelect";
 import CustomTextarea from "./CustomTextArea";
 import CustomFileUpload from "./CustomUploadFile";
-import { motion } from "framer-motion";
-import { FaWatchmanMonitoring } from "react-icons/fa";
 
 const componentMap = {
   CustomInput,
@@ -36,8 +34,56 @@ const DynamicForm = ({ formConfig, onSubmit, initialData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    await onSubmit(formData);
-    setIsLoading(false);
+
+    const { api, onSuccess, onError } = formConfig;
+
+    let requestData = formData;
+    const config = {
+      headers: {},
+    };
+
+    if (api.submissionType === "formData") {
+      const data = new FormData();
+      for (const key in requestData) {
+        if (requestData[key] !== null && requestData[key] !== undefined) {
+          data.append(key, requestData[key]);
+        }
+      }
+      requestData = data;
+    } else if (api.submissionType === "urlencoded") {
+      const params = new URLSearchParams();
+      for (const key in requestData) {
+        if (requestData[key] !== null && requestData[key] !== undefined) {
+          params.append(key, requestData[key]);
+        }
+      }
+      requestData = params;
+      config.headers["Content-Type"] = "application/x-www-form-urlencoded";
+    } else {
+      config.headers["Content-Type"] = "application/json";
+    }
+
+    console.log("\n data ----------------------------- \t ", requestData);
+
+    try {
+      const response = await apiClient({
+        url: api.url,
+        method: api.method,
+        data: requestData,
+        ...config
+      });
+
+      if (onSuccess) {
+        onSuccess(response);
+      }
+    } catch (error) {
+      if (onError) {
+        onError(error);
+      }
+    } finally {
+      setIsLoading(false);
+      setFormData({});
+    }
   };
 
   return (

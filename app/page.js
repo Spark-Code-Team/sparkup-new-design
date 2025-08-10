@@ -6,24 +6,18 @@ import Team from "../components/template/home/Team";
 import WhyUs from "@/components/template/home/WhyUs";
 import ReservationForm from "@/components/template/home/ReservationForm";
 
-const Home = ()=>{
-
-  return(
-
-      <>
-
-          <SparkUp/>
-          {/*<Services/>*/}
-          <Portfolio/>
-          <CustomerReviews/>
-          <WhyUs/>
-          <ReservationForm/>
-          <Team/>
-      </>
-
-  )
-
-}
-
+const Home = () => {
+  return (
+    <>
+      <SparkUp />
+      {/*<Services/>*/}
+      <Portfolio />
+      <CustomerReviews />
+      <WhyUs />
+      <ReservationForm />
+      <Team />
+    </>
+  );
+};
 
 export default Home;

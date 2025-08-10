@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="fa">
-      <body className="bg-white font-">
+      <body className="bg-white font-azar ">
         <Navbar />
         <ToastProvider>{children}</ToastProvider>
         <Footer />

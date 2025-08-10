@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@persian-tools/persian-tools": "^3.6.0",
+    "axios": "^1.11.0",
     "date-fns": "^4.1.0",
     "date-fns-jalali": "^4.1.0-0",
     "date-object": "^2.1.6",
