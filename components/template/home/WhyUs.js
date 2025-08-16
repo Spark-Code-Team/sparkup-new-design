@@ -7,31 +7,31 @@ export default function WhyUs() {
       id: 1,
       title: "راهکار مخصوص خودت، نه نسخه آماده!",
 
-      image: "/images/j1.png",
+      image: "/images/outfit.svg",
     },
     {
       id: 2,
       title: "رفاقت واقعی تا ته مسیر!",
 
-      image: "/images/j2.png",
+      image: "/images/gay.svg",
     },
     {
       id: 3,
       title: "تیم خلاق با کلی تجربه",
 
-      image: "/images/j3.png",
+      image: "/images/creativity.svg",
     },
     {
       id: 4,
       title: "تخصص دیجیتال + هوش سنتی تبلیغات",
 
-      image: "/images/j4.png",
+      image: "/images/digital.svg",
     },
     {
       id: 5,
       title: "به صرفه، نتیجه‌محور، بی‌واسطه!",
 
-      image: "/images/j5.png",
+      image: "/images/target.svg",
     },
   ];
 
@@ -46,11 +46,11 @@ export default function WhyUs() {
             containerClassName={"flex flex-col items-center m-6 text-center"}
             width={200}
             height={200}
-            imageClassName={"w-32 h-32"}
+            imageClassName={"w-64 h-64"}
             key={item.id}
             title={item.title}
             image={item.image}
-
+            titleClassName={'-mt-16'}
           />
         ))}
       </div>

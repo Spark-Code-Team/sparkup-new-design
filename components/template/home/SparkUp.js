@@ -14,31 +14,31 @@ const mainPageServices = [
     id: 1,
     title: "بازاریابی محتوایی",
     description: "محتوای حرفه‌ای و جذاب که مخاطبت همیشه بهش برمی‌گرده!",
-    image: "/images/bazar.png",
+    image: "/images/mohtava.svg",
   },
   {
     id: 2,
     title: "بازاریابی شبکه‌های اجتماعی",
     description: "پیجت مثل یه ویترین شیک می‌درخشه، با استراتژی درست و هوشمند!",
-    image: "/images/i2.png",
+    image: "/images/social.svg",
   },
   {
     id: 3,
     title: "SEO (بهینه‌سازی موتور جستجو)",
     description: "به گوگل و مخاطب بفهمون که تو بهترین هستی!",
-    image: "/images/i3.png",
+    image: "/images/seo.svg",
   },
   {
     id: 4,
     title: "تبلیغات آنلاین",
     description: "تبلیغات هدفمند و جذاب که درست به مخاطب هدف می‌رسه!",
-    image: "/images/i4.png",
+    image: "/images/tabligh.svg",
   },
   {
     id: 5,
     title: "برندینگ",
     description: "طراحی هویت برند قوی و به‌یادماندنی که تو ذهن مخاطب حک بشه.",
-    image: "/images/i5.png",
+    image: "/images/branding.svg",
   },
 ];
 
@@ -136,7 +136,7 @@ const SparkUp = () => {
 
       {/*  desktop  */}
 
-      <div className="w-full mt-24 lg:flex lg:flex-col lg:gap-x-10 hidden  gap-10">
+      <div className="w-full  lg:flex lg:flex-col lg:gap-x-10 hidden  gap-10">
         <div className="-mx-[calc(55vw-50%)] ">
           <Image
               src="/images/main-banner.png"
@@ -212,8 +212,9 @@ const SparkUp = () => {
                     image={item.image}
                     width={100}
                     height={100}
-                    containerClassName="w-72" // اندازه ثابت برای کارت‌های گرید
-                    imageClassName={"p-5 h-40 w-40 self-center"}
+                    containerClassName="w-72"
+                    titleClassName={'-mt-14'}
+                    imageClassName={"p-5 h-52 w-52 self-center"}
                   />
                 </motion.div>
               ))}
