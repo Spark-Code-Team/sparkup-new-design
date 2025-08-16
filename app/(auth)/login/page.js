@@ -1,13 +1,15 @@
 "use client";
 
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import DynamicForm from "@/components/elements/DynamicForm";
-import { useToast } from "@/components/context/ToastContext"; 
+import { useToast } from "@/components/context/ToastContext";
 
-export default function LoginPage() {
+function LoginPageInner() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const { addToast } = useToast()
+  const searchParams = useSearchParams(); // حالا زیر Suspense هست و خطای build نمی‌دهد
+  const { addToast } = useToast();
+
   const loginFormConfig = {
     headerText: "ورود به پنل مدیریت",
     submitButtonText: "ورود",
@@ -42,14 +44,12 @@ export default function LoginPage() {
     api: {
       url: "token",
       method: "POST",
-      submissionType: "urlencoded"
+      submissionType: "urlencoded",
     },
     onSuccess: () => {
       addToast("با موفقیت وارد شدید!", "success");
-
       router.refresh();
     },
-
     onError: (error) => {
       console.error("Login failed:", error);
       addToast("نام کاربری یا رمز عبور اشتباه است.", "error");
@@ -60,5 +60,13 @@ export default function LoginPage() {
     <div className="flex flex-col items-center justify-center mt-32">
       <DynamicForm formConfig={loginFormConfig} />
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginPageInner />
+    </Suspense>
   );
 }
