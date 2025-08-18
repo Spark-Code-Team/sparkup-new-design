@@ -24,20 +24,16 @@ jobs:
             # به پوشه بک‌اند بروید و آخرین تغییرات را بگیرید
             echo ">>> Pulling backend changes..."
             cd ~/spark-up/sparkup-backend
-            git pull
-            
+            git pull 
             # به پوشه فرانت‌اند بروید و آخرین تغییرات را بگیرید
             echo ">>> Pulling frontend changes..."
             cd ~/spark-up/sparkup-new-design
             git pull
-            
-            # به پوشه اصلی که docker-compose.yml در آن قرار دارد برگردید
+
             echo ">>> Rebuilding and restarting services..."
             cd ~/spark-up
-            
             # ایمیج‌ها را دوباره بسازید و کانتینرها را با نسخه جدید "مجبور به بازسازی" کنید
             docker compose up -d --build --force-recreate
-            
-            # ایمیج‌های قدیمی و بدون استفاده را پاک کنید تا فضا آزاد شود
+            # ایمیج‌ها را دوباره بسازید و کانتینرها را با نسخه جدید جایگزین کنید
+            docker compose up -d --build
             docker image prune -f
-
