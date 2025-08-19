@@ -1,61 +1,105 @@
-name: CI/CD Frontend
+name: frontend-ci-cd
 
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: {}
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: frontend-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  IMAGE_BASENAME: sparkup-frontend
+  DOCKER_CONTEXT: .
+  DOCKERFILE: Dockerfile.frontend
 
 jobs:
-  build_and_deploy:
+  build-and-push:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write   # اجازهٔ Push به GHCR
-      id-token: write
-    env:
-      REGISTRY: ghcr.io
-      OWNER_LC: ${{ lower(github.repository_owner) }}
-      IMAGE_NAME: ${{ lower(format('{0}/sparkup-frontend', github.repository_owner)) }}
-      TAG: main-${{ github.sha }}
-
+    outputs:
+      owner_lc: ${{ steps.ow.outputs.owner_lc }}
+      short_sha: ${{ steps.meta.outputs.short_sha }}
+      image_name: ${{ steps.meta.outputs.image_name }}
+      image_tag: ${{ steps.meta.outputs.image_tag }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Login to GHCR (using GITHUB_TOKEN)
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compute lowercase owner
+        id: ow
+        shell: bash
+        run: |
+          echo "owner_lc=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
+      - name: Compute metadata
+        id: meta
+        shell: bash
+        run: |
+          short="${GITHUB_SHA::7}"
+          echo "short_sha=${short}" >> $GITHUB_OUTPUT
+          echo "image_name=ghcr.io/${{ steps.ow.outputs.owner_lc }}/${{ env.IMAGE_BASENAME }}" >> $GITHUB_OUTPUT
+          echo "image_tag=main-${short}" >> $GITHUB_OUTPUT
 
       - name: Set up Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build & Push Docker Image
+      - name: Login to GHCR (GITHUB_TOKEN)
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ steps.ow.outputs.owner_lc }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build & Push image
         uses: docker/build-push-action@v6
         with:
-          context: .
-          file: Dockerfile
+          context: ${{ env.DOCKER_CONTEXT }}
+          file: ${{ env.DOCKERFILE }}
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache,mode=max
+            ${{ steps.meta.outputs.image_name }}:latest
+            ${{ steps.meta.outputs.image_name }}:${{ steps.meta.outputs.image_tag }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy over SSH
-        uses: appleboy/ssh-action@v1.2.0
-        env:
-          NEW_FRONTEND_IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
-          NEW_BACKEND_IMAGE:  ${{ env.REGISTRY }}/${{ env.OWNER_LC }}/sparkup-backend:latest
+        uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script_stop: true
-          envs: NEW_FRONTEND_IMAGE,NEW_BACKEND_IMAGE
+          port: ${{ secrets.SSH_PORT }}
           script: |
-            export NEW_FRONTEND_IMAGE
-            export NEW_BACKEND_IMAGE
-            /opt/sparkup/deploy.sh
+            set -euo pipefail
+            cd /opt/sparkup
+
+            IMAGE_NAME="${{ needs.build-and-push.outputs.image_name }}"
+            IMAGE_TAG="${{ needs.build-and-push.outputs.image_tag }}"
+            FULL_IMAGE="${IMAGE_NAME}:${IMAGE_TAG}"
+
+            # به‌روزرسانی/ایجاد .env برای FRONTEND_IMAGE
+            if [ -f .env ]; then
+              if grep -q '^FRONTEND_IMAGE=' .env; then
+                sed -i -E "s|^FRONTEND_IMAGE=.*$|FRONTEND_IMAGE=${FULL_IMAGE}|g" .env
+              else
+                echo "FRONTEND_IMAGE=${FULL_IMAGE}" >> .env
+              fi
+            else
+              echo "FRONTEND_IMAGE=${FULL_IMAGE}" > .env
+            fi
+
+            # Pull & restart فقط سرویس frontend
+            docker compose pull frontend
+            docker compose up -d frontend
+
+            # نمایش وضعیت
+            docker compose ps
