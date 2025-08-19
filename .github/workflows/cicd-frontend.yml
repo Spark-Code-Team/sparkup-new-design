@@ -15,8 +15,8 @@ concurrency:
 
 env:
   IMAGE_BASENAME: sparkup-frontend
-  DOCKER_CONTEXT: .
-  DOCKERFILE: Dockerfile.frontend
+  BUILD_CONTEXT: .
+  DOCKERFILE_PATH: Dockerfile.frontend
 
 jobs:
   build-and-push:
@@ -58,8 +58,8 @@ jobs:
       - name: Build & Push image
         uses: docker/build-push-action@v6
         with:
-          context: ${{ env.DOCKER_CONTEXT }}
-          file: ${{ env.DOCKERFILE }}
+          context: ${{ env.BUILD_CONTEXT }}
+          file: ${{ env.DOCKERFILE_PATH }}
           push: true
           tags: |
             ${{ steps.meta.outputs.image_name }}:latest
@@ -97,9 +97,6 @@ jobs:
               echo "FRONTEND_IMAGE=${FULL_IMAGE}" > .env
             fi
 
-            # Pull & restart فقط سرویس frontend
             docker compose pull frontend
             docker compose up -d frontend
-
-            # نمایش وضعیت
             docker compose ps
