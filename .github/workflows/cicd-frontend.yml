@@ -3,8 +3,6 @@ name: CI/CD Frontend
 on:
   push:
     branches: [ "main" ]
-    paths-ignore:
-      - ".github/**"
   workflow_dispatch: {}
 
 jobs:
@@ -12,23 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
+      packages: write   # برای GHCR ضروری است
       id-token: write
     env:
       REGISTRY: ghcr.io
-      IMAGE_NAME: ${{ github.repository_owner }}/sparkup-frontend
+      OWNER_LC: ${{ toLower(github.repository_owner) }}
+      IMAGE_NAME: ${{ toLower(github.repository_owner) }}/sparkup-frontend
       TAG: main-${{ github.sha }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Login to GHCR
+      - name: Login to GHCR (using GITHUB_TOKEN)
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Buildx
         uses: docker/setup-buildx-action@v3
@@ -49,8 +48,7 @@ jobs:
         uses: appleboy/ssh-action@v1.2.0
         env:
           NEW_FRONTEND_IMAGE: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.TAG }}
-          # بک را دست نمی‌زنیم؛ مقدار قبلی در .env باقی می‌ماند
-          NEW_BACKEND_IMAGE: ${{ env.REGISTRY }}/${{ github.repository_owner }}/sparkup-backend:latest
+          NEW_BACKEND_IMAGE:  ${{ env.REGISTRY }}/${{ env.OWNER_LC }}/sparkup-backend:latest
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
