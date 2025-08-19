@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write   # برای GHCR ضروری است
+      packages: write   # اجازهٔ Push به GHCR
       id-token: write
     env:
       REGISTRY: ghcr.io
-      OWNER_LC: ${{ toLower(github.repository_owner) }}
-      IMAGE_NAME: ${{ toLower(github.repository_owner) }}/sparkup-frontend
+      OWNER_LC: ${{ lower(github.repository_owner) }}
+      IMAGE_NAME: ${{ lower(format('{0}/sparkup-frontend', github.repository_owner)) }}
       TAG: main-${{ github.sha }}
 
     steps:
