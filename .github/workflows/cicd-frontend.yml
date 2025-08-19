@@ -77,6 +77,8 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # اگر کلیدت passphrase دارد، خط بعدی را آنکامنت کن و Secret بساز:
+          # passphrase: ${{ secrets.SSH_PASSPHRASE }}
           port: ${{ secrets.SSH_PORT }}
           script: |
             set -euo pipefail
@@ -86,17 +88,44 @@ jobs:
             IMAGE_TAG="${{ needs.build-and-push.outputs.image_tag }}"
             FULL_IMAGE="${IMAGE_NAME}:${IMAGE_TAG}"
 
-            # به‌روزرسانی/ایجاد .env برای FRONTEND_IMAGE
+            # owner را از ایمیج فرانت استخراج کن (ghcr.io/<owner>/sparkup-frontend:tag)
+            OWNER="$(echo "$IMAGE_NAME" | awk -F'/' '{print $2}')"
+
+            # اگر BACKEND_IMAGE در .env موجود نباشه، خودکار تنظیمش کن:
+            ensure_backend_image() {
+              if grep -q '^BACKEND_IMAGE=' .env 2>/dev/null; then
+                # مقدار موجوده؛ کاری نکن
+                return
+              fi
+
+              # اگر کانتینر backend در حال اجراست، از ایمیج همان استفاده کن
+              CURR="$(docker ps --filter "name=sparkup-backend" --format "{{.Image}}" | head -n1 || true)"
+              if [ -n "$CURR" ]; then
+                echo "BACKEND_IMAGE=${CURR}" >> .env
+                echo "[deploy] BACKEND_IMAGE set from running container: $CURR"
+                return
+              fi
+
+              # در غیر اینصورت حدس امن بزن (latest)
+              GUESS="ghcr.io/${OWNER}/sparkup-backend:latest"
+              echo "BACKEND_IMAGE=${GUESS}" >> .env
+              echo "[deploy] BACKEND_IMAGE guessed: $GUESS"
+            }
+
+            # به‌روزرسانی/ایجاد FRONTEND_IMAGE و تضمین BACKEND_IMAGE
             if [ -f .env ]; then
               if grep -q '^FRONTEND_IMAGE=' .env; then
                 sed -i -E "s|^FRONTEND_IMAGE=.*$|FRONTEND_IMAGE=${FULL_IMAGE}|g" .env
               else
                 echo "FRONTEND_IMAGE=${FULL_IMAGE}" >> .env
               fi
+              ensure_backend_image
             else
               echo "FRONTEND_IMAGE=${FULL_IMAGE}" > .env
+              ensure_backend_image
             fi
 
+            # Pull & restart (به خاطر depends_on باید backend معتبر باشد)
             docker compose pull frontend
             docker compose up -d frontend
             docker compose ps
