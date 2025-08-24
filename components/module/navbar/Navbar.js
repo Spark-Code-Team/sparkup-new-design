@@ -36,7 +36,7 @@ const navLinks = [
   },
   { name: "درباره ما", href: "/about" },
   { name: "تماس با ما", href: "/contact-us" },
-  { name: "پرسش‌های متداول", href: "/faq" },
+  // { name: "پرسش‌های متداول", href: "/faq" },
 ];
 
 const Navbar = () => {
