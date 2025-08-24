@@ -13,7 +13,7 @@ const footerLinks = [
   { href: "/", label: "صفحه اصلی" },
   { href: "/job", label: "فرصت‌های شغلی" },
   { href: "/services", label: "خدمات" },
-  { href: "/portfolio", label: "نمونه کارها" },
+  // { href: "/portfolio", label: "نمونه کارها" },
   { href: "/blog", label: "مقالات و منابع" },
   { href: "/about", label: "درباره ما" },
   { href: "/contact-us", label: "تماس با ما" },
@@ -71,7 +71,22 @@ const Footer = () => {
       </h2>
 
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-12 sm:py-14">
-        {/* نکته مهم: گرید پایدار در همه‌ی برک‌پوینت‌ها */}
+        <motion.div
+          variants={columnVariants}
+          className="mb-10 rounded-2xl border border-[#7a0202]/30 bg-white/5 px-4 py-5 sm:px-6 sm:py-6 text-center backdrop-blur-sm shadow-sm"
+        >
+          <p className="text-sm sm:text-base leading-7 sm:leading-8 font-azar">
+            اسپارک‌آپ یه خانواده‌ست پر از آدمای خلاق و باحال که با کلی ایده‌های
+            ناب و خفن، کسب‌وکارتون رو تو دنیای تبلیغات چند سر و گردن بالا
+            می‌برن!
+          </p>
+          <p className="mt-2 sm:mt-3 text-base sm:text-lg font-extrabold font-azar">
+            <span className="bg-gradient-to-l from-[#FF8500] via-[#43B1AC] to-[#053C5E] bg-clip-text text-transparent">
+              با اسپارک‌آپ، مرزهارو به چالش بکش!
+            </span>
+          </p>
+        </motion.div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           {/* ستون 1 */}
           <motion.div
@@ -102,14 +117,12 @@ const Footer = () => {
               <a
                 href="mailto:info@sparkup-agency.com"
                 className="hover:text-white underline-offset-4 hover:underline ltr:inline-block"
-                // برای جلوگیری از وارونگی ایمیل در RTL:
                 style={{ direction: "ltr" }}
               >
                 info@sparkup-agency.com
               </a>
             </p>
 
-            {/* نقشه با ارتفاع مشخص و والد با height */}
             <div className="w-full h-44 sm:h-48 rounded-xl overflow-hidden shadow-lg border-2 border-[#7a0202]/30">
               <iframe
                 title="آدرس اسپارک‌آپ روی نقشه"
@@ -130,7 +143,6 @@ const Footer = () => {
             className="text-right"
           >
             <h3 className="text-lg font-bold text-white mb-5">دسترسی سریع</h3>
-            {/* در موبایل دوستونه می‌کنیم که بلند نشه */}
             <ul className="grid grid-cols-2 xs:grid-cols-2 gap-y-3 gap-x-6">
               {footerLinks.map((link) => (
                 <li key={link.label}>
@@ -142,7 +154,8 @@ const Footer = () => {
                       className="text-sm hover:text-white focus:outline-none focus:underline"
                       href={link.href}
                     >
-                       - {link.label}
+                      {" "}
+                      - {link.label}
                     </Link>
                   </motion.div>
                 </li>
@@ -176,7 +189,7 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          {/* ستون 4 - باکس تماس کوتاه/CTA یا هر چیز دلخواه */}
+          {/* ستون 4 */}
           <motion.div
             variants={columnVariants}
             className="text-right space-y-4"

@@ -41,7 +41,7 @@ const About = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-evenly gap-10">
+    <div className="flex flex-col  items-center justify-evenly gap-10">
       <div className="lg:mt-36">
         <TitlePages
           title="ما یه تیمیم… ولی نه یه تیم معمولی!
@@ -66,7 +66,7 @@ const About = () => {
       </div>
 
       <div className="flex flex-col items-center gap-4">
-        <h4 className="font-azar font-normal text-lg mt-4  text-justify p-4 md:p-0">
+        <h4 className="font-azar  font-normal text-lg mt-4  text-justify p-4 md:p-0">
           دوست داری ما هم بخشی از داستان برندت باشیم؟
         </h4>
 

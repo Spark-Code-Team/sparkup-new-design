@@ -5,9 +5,26 @@ import CustomButton from "@/components/elements/CustomButton";
 import TitlePages from "@/components/module/TitlePages";
 import Image from "next/image";
 
+import MohtavaIcon from "@/components/icons/MohtavIcon";
+import BrandingIcon from "@/components/icons/BrandingIcon";
+import SeoIcon from "@/components/icons/SeoIcon";
+import SocialIcon from "@/components/icons/SocialIcon";
+import TablighIcon from "@/components/icons/TablighIcon";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes } from "react-icons/fa";
+import { twMerge } from "tailwind-merge";
+
+import { pickBrandClasses } from "@/utils/pickBrandColor";
+
+const ICON_MAP = {
+  "/images/mohtava.svg": MohtavaIcon,
+  "/images/social.svg": SocialIcon,
+  "/images/seo.svg": SeoIcon,
+  "/images/tabligh.svg": TablighIcon,
+  "/images/branding.svg": BrandingIcon,
+};
 
 const mainPageServices = [
   {
@@ -76,18 +93,18 @@ const SparkUp = () => {
   }, []);
 
   return (
-    <div className={''}>
+    <div className={""}>
       {/*   mobile   */}
       <div className="w-full mt-10 font-azar lg:hidden flex flex-col items-center justify-evenly gap-4">
         <div>
           <div className="w-[88%] m-auto flex flex-col items-center justify-evenly gap-4 text-justify">
             <div className="w-full m-auto flex justify-center mt-6">
               <Image
-                src="/images/mobile-banner.svg"
+                src="/images/main-banner.png"
                 alt=""
-                width={400}
+                width={1100}
                 height={400}
-                className=""
+                className="min-w-[400px] min-h-[200px]"
               />
             </div>
             <div className="w-full font-azar font-bold m-auto text-xl  text-center">
@@ -139,13 +156,13 @@ const SparkUp = () => {
       <div className="w-full  lg:flex lg:flex-col lg:gap-x-10 hidden  gap-10">
         <div className="-mx-[calc(55vw-50%)] ">
           <Image
-              src="/images/main-banner.png"
-              alt=""
-              width={2000}
-              height={2000}
-              sizes="100vw"
-              className="w-full h-auto mt-10 block"
-              priority
+            src="/images/main-banner.png"
+            alt=""
+            width={2000}
+            height={2000}
+            sizes="100vw"
+            className="w-full h-auto mt-10 block"
+            priority
           />
         </div>
         <div className="lg:w-1/2 text-center mx-auto flex flex-wrap justify-center gap-4 items-center">
@@ -198,26 +215,33 @@ const SparkUp = () => {
               </h3>
             </div>
             <div className="w-full flex flex-wrap justify-center items-start gap-10 p-10">
-              {mainPageServices.map((item) => (
-                <motion.div
-                  key={item.id}
-                  layoutId={`card-container-${item.id}`}
-                  onClick={() => setSelectedId(item.id)}
-                  className="cursor-pointer"
-                  whileHover={{ scale: 1.03 }} // یک افکت هاور کوچک و بدون دردسر
-                  transition={{ duration: 0.3 }}
-                >
-                  <CardComponent
-                    title={item.title}
-                    image={item.image}
-                    width={100}
-                    height={100}
-                    containerClassName="w-72"
-                    titleClassName={'-mt-14'}
-                    imageClassName={"p-5 h-52 w-52 self-center"}
-                  />
-                </motion.div>
-              ))}
+              {mainPageServices.map((item) => {
+                const MaybeIcon = ICON_MAP[item.image]; // اگر وجود داشت، کامپوننته
+
+                return (
+                  <motion.div
+                    key={item.id}
+                    layoutId={`card-container-${item.id}`}
+                    onClick={() => setSelectedId(item.id)}
+                    className="cursor-pointer"
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <CardComponent
+                      title={item.title}
+                      description={item.description}
+                      image={MaybeIcon || item.image}
+                      hoverBg="hover:bg-[#C1121F]"
+                      hoverText="group-hover:text-white"
+                      width={100}
+                      height={100}
+                      containerClassName="w-72"
+                      titleClassName="-mt-14"
+                      imageClassName="p-5 h-52 w-52 self-center"
+                    />
+                  </motion.div>
+                );
+              })}
             </div>
 
             {/* The Focused Card Overlay */}
@@ -288,13 +312,32 @@ const SparkUp = () => {
               )}
             </AnimatePresence>
             <div className=" w-full flex flex-wrap justify-center my-10  gap-10">
-              {subServices.map((item) => (
-                <CardComponent
-                  containerClassName={"w-42 h-42 p-5"}
-                  title={item}
-                  titleClassName={"font-semibold text-lg"}
-                />
-              ))}
+              {subServices.map((item) => {
+                const { bg, hoverBg, title, desc, titleHover, descHover } =
+                  pickBrandClasses(item);
+
+                return (
+                  <CardComponent
+                    key={item}
+                    containerClassName={twMerge(
+                      "w-52 h-32 transition-all hover:brightness-110 rounded-lg flex flex-col items-center text-center justify-center",
+                      bg,
+                      hoverBg
+                    )}
+                    title={item}
+                    titleClassName={twMerge(
+                      "font-semibold text-lg text-center",
+                      title,
+                      titleHover
+                    )}
+                    descriptionClassName={twMerge(
+                      "font-azar font-normal text-center",
+                      desc,
+                      descHover
+                    )}
+                  />
+                );
+              })}
             </div>
             <div>
               <CustomButton>ببین چطوری می‌تونیم کمکت کنیم!</CustomButton>

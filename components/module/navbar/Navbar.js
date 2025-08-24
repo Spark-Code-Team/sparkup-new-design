@@ -26,7 +26,7 @@ const backdropVariants = {
 
 const navLinks = [
   { name: "صفحه اصلی", href: "/" },
-  { name: "نمونه کارها", href: "/portfolio" },
+  // { name: "نمونه کارها", href: "/portfolio" },
   { name: "خدمات", href: "/services" },
   { name: "فرصت‌های شغلی", href: "/job" },
   {
