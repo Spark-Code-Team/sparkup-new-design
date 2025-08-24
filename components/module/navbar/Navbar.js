@@ -155,16 +155,8 @@ const Navbar = () => {
       </AnimatePresence>
 
       {/* Navbar for Desktop */}
-      <nav className="w-full h-[96px] bg-white lg:flex hidden justify-between items-center px-10 border-b-[1.5px] border-[#DADADA] fixed top-0 z-40">
-        <div>
-          <Image
-            src="/images/sparkup-logo.svg"
-            alt="SparkUP Logo"
-            width={85}
-            height={26}
-          />
-        </div>
-        <ul className="flex text-sm font-bold font-azar items-start gap-0 -mr-72 ">
+      <nav className="w-full h-[96px] bg-white lg:flex hidden justify-evenly items-center px-10 border-b-[1.5px] border-[#DADADA] fixed top-0 z-40">
+        <ul className="flex text-sm font-bold font-azar items-start gap-0 ">
           {navLinks.map((link) => (
             <motion.li
               key={link.name}
@@ -182,6 +174,14 @@ const Navbar = () => {
             </motion.li>
           ))}
         </ul>
+        <div>
+          <Image
+            src="/images/sparkup-logo.svg"
+            alt="SparkUP Logo"
+            width={85}
+            height={26}
+          />
+        </div>
       </nav>
     </>
   );
