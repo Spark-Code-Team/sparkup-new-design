@@ -6,8 +6,7 @@ import Link from "next/link";
 import {
   FaLinkedinIn,
   FaInstagram,
-  FaTwitter,
-  FaPaperPlane,
+  FaTelegram
 } from "react-icons/fa";
 
 // فرض می‌شود این فانکشن در پروژه شما موجود است
@@ -26,9 +25,9 @@ const footerLinks = [
 ];
 
 const socialLinks = [
-  { href: "#", icon: <FaInstagram />, label: "Instagram" },
-  { href: "#", icon: <FaLinkedinIn />, label: "LinkedIn" },
-  { href: "#", icon: <FaTwitter />, label: "Twitter" },
+  { href: "https://www.instagram.com/sparkup_agency?utm_source=ig_web_button_share_sheet&igsh=MXV0YXFmdjJjdWJtOQ==", icon: <FaInstagram />, label: "Instagram" },
+  { href: "https://www.linkedin.com/company/sparkups/posts/?feedView=all", icon: <FaLinkedinIn />, label: "LinkedIn" },
+  { href: "https://t.me/sparkup_agency", icon: <FaTelegram />, label: "Telegram" },
 ];
 
 // کامپوننت اصلی فوتر
@@ -93,7 +92,7 @@ const Footer = () => {
             </p>
             <div className="w-full h-40 rounded-xl overflow-hidden shadow-lg border-2 border-[#7a0202]/30">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3237.5447404040665!2d51.47017142545761!3d35.76199302553533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e047bf5380dcf%3A0x333cdbc25e260658!2z2KfYs9iq2KfZhiDYqtmH2LHYp9mG2Iwg2KrZh9ix2KfZhtiMINmF2YbYt9mC2Ycg27TYjCDYqNmI2LPYqtin2YYg2b7Zhtis2YXYjCDYp9uM2LHYp9mG!5e0!3m2!1sfa!2s!4v1741331598038!5m2!1sfa!2s"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1049.5948150636866!2d51.457245726254264!3d35.76573200185117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1755964204729!5m2!1sen!2s"   
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -128,13 +127,13 @@ const Footer = () => {
             variants={columnVariants}
             className="md:col-span-2 lg:col-span-2"
           >
-            <h3 className="text-lg font-bold text-white mb-6">
+            {/* <h3 className="text-lg font-bold text-white mb-6">
               عضویت در خبرنامه اسپارک‌آپ
             </h3>
             <p className="text-sm mb-6">
               از آخرین اخبار، مقالات و تخفیف‌های ویژه ما باخبر شوید!
-            </p>
-            <form className="flex flex-col sm:flex-row gap-3">
+            </p> */}
+            {/* <form className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
                 placeholder="ایمیل خود را وارد کنید"
@@ -149,7 +148,7 @@ const Footer = () => {
                 <FaPaperPlane />
                 <span>عضویت</span>
               </motion.button>
-            </form>
+            </form> */}
             <div className="mt-8">
               <h4 className="font-semibold text-white mb-4">به ما سر بزنید!</h4>
               <div className="flex items-center gap-5">
