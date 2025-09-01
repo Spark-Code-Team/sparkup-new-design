@@ -83,6 +83,7 @@ const SparkUp = () => {
   const selectedItem = mainPageServices.find((item) => item.id === selectedId);
 
   useEffect(() => {
+    
     const handleEscape = (event) => {
       if (event.key === "Escape") {
         setSelectedId(null);
@@ -118,9 +119,12 @@ const SparkUp = () => {
             </div>
 
             <div className="w-full m-auto mt-6 flex justify-center">
-              <button className="w-auto p-4 font-azar font-medium text-lg flex mx-auto justify-center items-center gap-x-5 bg-[#C1121F] rounded-xl text-white mt-4">
+              <a
+                href="tel:02126612786"
+                className="w-auto p-4 font-azar font-medium text-lg flex mx-auto justify-center items-center gap-x-5 bg-[#C1121F] rounded-xl text-white mt-4"
+              >
                 بزن بریم مشاوره رایگان بگیریم!🔥
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -178,7 +182,12 @@ const SparkUp = () => {
             </p>
           </div>
 
-          <CustomButton> بزن بریم مشاوره رایگان بگیریم!</CustomButton>
+          <CustomButton>
+            {" "}
+            <div>
+              <a href="tel:02126612786">بزن بریم مشاوره رایگان بگیریم!🔥</a>
+            </div>
+          </CustomButton>
         </div>
 
         <div className="">
@@ -199,7 +208,9 @@ const SparkUp = () => {
               </p>
             </div>
             <div>
-              <CustomButton>اول ببین چیکار کردیم </CustomButton>
+              <CustomButton>
+                <a href="#portfolio">اول ببین چیکار کردیم</a>
+              </CustomButton>
             </div>
           </div>
         </div>
@@ -340,7 +351,9 @@ const SparkUp = () => {
               })}
             </div>
             <div>
-              <CustomButton>ببین چطوری می‌تونیم کمکت کنیم!</CustomButton>
+              <CustomButton>
+                <a href="#reserve">ببین چطوری می‌تونیم کمکت کنیم!</a>
+              </CustomButton>
             </div>
           </div>
         </div>

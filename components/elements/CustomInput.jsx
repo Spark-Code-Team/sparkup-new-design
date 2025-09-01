@@ -84,7 +84,7 @@ const CustomInput = ({
         animate={isFocused ? "focus" : "rest"}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         className={twMerge(
-          "relative inline-flex w-full h-16 rounded-xl bg-gradient-to-br from-red-300 to-orange-300",
+          "relative inline-flex w-full h-16 rounded-xl bg-white",
           className
         )}
       >

@@ -70,7 +70,7 @@ const About = () => {
           دوست داری ما هم بخشی از داستان برندت باشیم؟
         </h4>
 
-        <Link href={"/contact-us#contact-form"}>
+        <Link href={"/#reserve"}>
           <CustomButton rightIcon={<FaFire />}>شروع همکاری</CustomButton>
         </Link>
       </div>

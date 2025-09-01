@@ -140,7 +140,7 @@ const CustomSelect = ({
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
         onClick={toggleDropdown}
         className={twMerge(
-          "'relative inline-flex w-full h-16 rounded-xl bg-gradient-to-br from-red-300 to-orange-300 cursor-pointer items-center px-4",
+          "'relative inline-flex w-full h-16 rounded-xl bg-white cursor-pointer items-center px-4",
           className
         )}
       >

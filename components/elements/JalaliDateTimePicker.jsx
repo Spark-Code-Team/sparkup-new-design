@@ -31,7 +31,7 @@ const JalaliDateTimePicker = ({ value, onChange, className }) => {
   useOnClickOutside(pickerRef, () => setIsOpen(false));
 
   const handleConfirm = () => {
-    onChange && onChange(date ? date.toDate() : null);
+    onChange && onChange(date ? date.toDate().toISOString() : null);
     setIsOpen(false);
   };
 

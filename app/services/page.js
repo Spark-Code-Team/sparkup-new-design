@@ -54,9 +54,13 @@ const Services = () => {
               ما همیشه اینجاییم تا راحت تصمیم بگیری!
             </p>
           </div>
-          <Link href="/contact-us">
-            <CustomButton>ما همیشه اینجاییم تا راحت تصمیم بگیری!</CustomButton>
-          </Link>
+          
+            <CustomButton>
+              <a href="tel:02126612786">
+                ما همیشه اینجاییم تا راحت تصمیم بگیری!
+              </a>
+            </CustomButton>
+          
         </div>
       </div>
     </>

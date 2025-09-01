@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { digitsEnToFa } from "@persian-tools/persian-tools";
 
-const FeatureCard = ({ icon, title, subtitle }) => {
+const FeatureCard = ({ icon, title, subtitle, href }) => {
   const handleMouseMove = (e) => {
     const { currentTarget: target } = e;
     const rect = target.getBoundingClientRect();
@@ -14,7 +14,10 @@ const FeatureCard = ({ icon, title, subtitle }) => {
   };
 
   return (
-    <motion.div
+    <motion.a
+      href={href}
+      target={href?.startsWith("http") ? "_blank" : "_self"}
+      rel="noopener noreferrer"
       onMouseMove={handleMouseMove}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{
@@ -24,7 +27,7 @@ const FeatureCard = ({ icon, title, subtitle }) => {
       }}
       viewport={{ once: true }}
       className="
-        group relative w-full max-w-sm cursor-default overflow-hidden 
+        group relative w-full max-w-sm cursor-pointer overflow-hidden 
         rounded-2xl bg-orange-300 p-8 text-center shadow-lg
         dark:bg-orange-300
       "
@@ -49,16 +52,16 @@ const FeatureCard = ({ icon, title, subtitle }) => {
         <span className="text-4xl dark:text-red-900">{icon}</span>
       </motion.div>
 
-      {/* عنوان */}
-      <h3 className="mb-2 text-xl font-azar font-bold text-slate-900 dark:text-black">
+      <h3 className="mb-2 text-lg font-azar font-bold text-slate-900 dark:text-black">
         {digitsEnToFa(title)}
       </h3>
 
-      {/* ساب تایتل */}
-      <p className="text-sm text-slate-600 dark:text-slate-400">
-        {subtitle && digitsEnToFa(subtitle)}
-      </p>
-    </motion.div>
+      {subtitle && (
+        <p className="text-sm text-slate-600 dark:text-slate-400">
+          {digitsEnToFa(subtitle)}
+        </p>
+      )}
+    </motion.a>
   );
 };
 

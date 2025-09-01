@@ -84,7 +84,7 @@ export default function ReservationForm() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-evenly gap-10 ">
+      <div id="reserve" className="flex flex-col items-center justify-evenly gap-10 ">
         <div>
           <TitlePages title={"رزرو وقت مشاوره"} />
         </div>

@@ -37,9 +37,16 @@ export default function ContactUs() {
           <h4 className="font-azar font-normal text-lg text-center">
             یه دکمه سریع برای مشاوره فوری داریم، بزن بریم حرف بزنیم!
           </h4>
-          <CustomButton rightIcon={<FaFire />}>مشاوره رایگان</CustomButton>
+          <CustomButton rightIcon={<FaFire />}>
+            <a href="tel:۰۹۹۲۷۹۹۴۰۲۷">مشاوره رایگان</a>
+          </CustomButton>
         </div>
         <div className="w-full flex flex-col items-center">
+          <TitlePages title={"وقتشه یه گپ باحال بزنیم! "} />
+          <h4 className="font-azar font-normal text-lg text-center">
+            ما اینجاییم تا رفاقتی بشینیم، نیازتو بشنویم و برات یه راه‌حل بسازیم.
+            بدون تعهد، بدون هزینه. فقط یه گپ دوستانه!
+          </h4>
           <ReservationContactUsForm />
         </div>
       </div>

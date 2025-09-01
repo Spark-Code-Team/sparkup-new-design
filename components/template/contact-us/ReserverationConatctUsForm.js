@@ -16,7 +16,7 @@ export default function ReservationContactUsForm() {
         id: "row1",
         fields: [
           {
-            id: "first_name",
+            id: "full_name",
             label: "اسمت چیه؟",
             component: "CustomInput",
             className: "md:w-96",
@@ -49,6 +49,25 @@ export default function ReservationContactUsForm() {
         ],
       },
     ],
+    api: {
+      url: "reservation-form/", // آدرس endpoint
+      method: "POST", // متد HTTP
+      submissionType: "json", // 'json' یا 'formData'
+    },
+
+    onSuccess: (response) => {
+      console.log("پاسخ موفقیت آمیز:", response.data);
+      addToast("پیام شما با موفقیت ارسال شد.", "success");
+      // اینجا می‌توانید کارهای دیگر مثل ریدایرکت کردن کاربر را انجام دهید
+      // window.location.href = '/thank-you';
+    },
+
+    onError: (error) => {
+      console.error("خطا در ارسال:", error);
+      const errorMessage =
+        error.response?.data?.message || "مشکلی در ارسال فرم پیش آمد.";
+      addToast(errorMessage, "error");
+    },
   };
 
   const handleFormSubmit = async (formData) => {
