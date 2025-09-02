@@ -18,12 +18,27 @@ const Portfolio = () => {
     },
     {
       id: 3,
-      image: "/images/frame2.png",
+      image: "/images/000.png",
       title: "طراحی سایت فروشگاهی طلا و جواهرات",
     },
     {
       id: 4,
-      image: "/images/frame1.png",
+      image: "/images/f1.png",
+      title: "طراحی سایت فروشگاهی طلا و جواهرات",
+    },
+    {
+      id: 5,
+      image: "/images/f2.png",
+      title: "طراحی سایت فروشگاهی طلا و جواهرات",
+    },
+    {
+      id: 6,
+      image: "/images/f3.png",
+      title: "طراحی سایت فروشگاهی طلا و جواهرات",
+    },
+    {
+      id: 7,
+      image: "/images/f4.png",
       title: "طراحی سایت فروشگاهی طلا و جواهرات",
     },
   ];
@@ -58,7 +73,7 @@ const Portfolio = () => {
               className="flex flex-col justify-center items-center h-full"
             >
               {/* کانتینر تصویر: موبایل مربع، دسکتاپ 4/3 */}
-              <div className="w-full relative mb-4 aspect-square lg:aspect-[4/3]">
+              <div className="w-full relative mb-4 aspect-square lg:aspect-[1/1]">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -66,7 +81,7 @@ const Portfolio = () => {
                   // عرض مؤثر هر اسلاید:
                   // موبایل: ~90vw، دسکتاپ: حدود 360px (بسته به breakpoints)
                   sizes="(max-width: 1024px) 90vw, 360px"
-                  className="object-cover rounded-lg"
+                  className="object-fill rounded-lg  w-[385px] h-[385px] md:w-[490px] md:h-[490px] flex flex-col items-center justify-center "
                   // فقط اسلاید اول priority برای پرهیز از فلیکر بالای صفحه
                   priority={idx === 0}
                   // quality پیش‌فرض 75 خوبه؛ اگر خواستی:

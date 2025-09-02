@@ -26,7 +26,7 @@ function CustomSwiper({ children }) {
         pagination={{ clickable: true }}
         breakpoints={{
           0: {
-            slidesPerView: 1.2, // کمی کراپ برای حس حرکت بهتر
+            slidesPerView: 1, // کمی کراپ برای حس حرکت بهتر
             spaceBetween: 12,
           },
           480: {

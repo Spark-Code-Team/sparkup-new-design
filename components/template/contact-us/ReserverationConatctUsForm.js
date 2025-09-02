@@ -22,10 +22,10 @@ export default function ReservationContactUsForm() {
             className: "md:w-96",
           },
           {
-            id: "email",
-            label: "ایمیلت رو بذار!",
+            id: "mobile",
+            label: "تلفن تماست رو بزار!",
             component: "CustomInput",
-            type: "email",
+            type: "phone",
             className: "md:w-96",
           },
         ],
@@ -40,7 +40,7 @@ export default function ReservationContactUsForm() {
             className: "md:w-96 text-sm px-10",
           },
           {
-            id: "calender",
+            id: "scheduled_at",
             label: "یه تاریخ بزاریم؟",
             component: "JalaliDateTimePicker",
             type: "number",
@@ -50,7 +50,7 @@ export default function ReservationContactUsForm() {
       },
     ],
     api: {
-      url: "reservation-form/", // آدرس endpoint
+      url: "meetings/", // آدرس endpoint
       method: "POST", // متد HTTP
       submissionType: "json", // 'json' یا 'formData'
     },
