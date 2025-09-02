@@ -1,54 +1,33 @@
-# ---------- deps ----------
+# --- deps ---
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json* yarn.lock* pnpm-lock.yaml* ./
-RUN \
-  if [ -f package-lock.json ]; then npm ci --no-audit --fund=false; \
-  elif [ -f yarn.lock ]; then corepack enable && yarn install --frozen-lockfile; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable && pnpm i --frozen-lockfile; \
-  else npm i --no-audit --fund=false; fi
+RUN if [ -f package-lock.json ]; then npm ci --no-audit --fund=false; \
+    elif [ -f yarn.lock ]; then corepack enable && yarn install --frozen-lockfile; \
+    elif [ -f pnpm-lock.yaml ]; then corepack enable && pnpm i --frozen-lockfile; \
+    else npm i --no-audit --fund=false; fi
 
-# ---------- builder ----------
+# --- builder ---
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-# *** آرگومان‌های بیلد که Next در زمان build اینلاین می‌کند ***
+# 👇 خیلی مهم: قبل از build
 ARG NEXT_PUBLIC_API_BASE_URL
 ARG NEXT_PUBLIC_API_URL
-
-# *** آن‌ها را به ENV تبدیل کن تا در مرحله build در دسترس باشند ***
 ENV NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
 ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
-# اگر next.config.js داری و output: 'standalone' ست نشده، توصیه می‌شود ست شود
-# COPY next.config.mjs ./next.config.mjs
-
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-
-# برای دیباگ: ببین واقعاً مقدار ست شده
-RUN node -e "console.log('BUILD: NEXT_PUBLIC_API_BASE_URL=', process.env.NEXT_PUBLIC_API_BASE_URL)"
-
-# **خیلی مهم**: باید قبل از build این ENVها ست شده باشند
+RUN node -e "console.log('BUILD ENV:', process.env.NEXT_PUBLIC_API_BASE_URL)"
 RUN npm run build
 
-# ---------- runner ----------
+# --- runner (standalone) ---
 FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-# اگر در next.config، output: 'standalone' فعال است:
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
-
-# اگر standalone نیست، این چهار خط را جایگزین کن:
-# COPY --from=builder /app/.next ./.next
-# COPY --from=builder /app/node_modules ./node_modules
-# COPY --from=builder /app/public ./public
-# COPY --from=builder /app/package.json ./package.json
-
 EXPOSE 3000
-# standalone:
 CMD ["node", "server.js"]
-# اگر standalone نیست:
-# CMD ["node", "node_modules/next/dist/bin/next", "start", "-p", "3000"]
