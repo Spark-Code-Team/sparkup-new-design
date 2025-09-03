@@ -58,6 +58,7 @@ jobs:
       - name: Build & Push image
         uses: docker/build-push-action@v6
         with:
+          no-cache: true
           context: ${{ env.BUILD_CONTEXT }}
           file: ${{ env.DOCKERFILE_PATH }}
           push: true
