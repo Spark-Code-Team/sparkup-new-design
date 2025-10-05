@@ -158,7 +158,7 @@ const SparkUp = () => {
       {/*  desktop  */}
 
       <div className="w-full  lg:flex lg:flex-col lg:gap-x-10 hidden  gap-10">
-        <div className="-mx-[calc(55vw-50%)] ">
+        <div className= "">
           <Image
             src="/images/main-banner.png"
             alt=""
